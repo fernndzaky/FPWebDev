@@ -50,6 +50,19 @@
       padding: 25px 70px;
 
     }
+    .parallax {
+      /* The image used */
+      background-image: url("assets/band 3.png");
+
+      /* Set a specific height */
+      height: 350px;
+
+      /* Create the parallax scrolling effect */
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
     </style>
   </head>
   <body style="font-family: Quicksand">
@@ -89,7 +102,8 @@
           </form>
         </div>
       </div>
-    </nav>  
+    </nav>
+     
     @yield('container')
 
     <div class="container pt-5 pb-5"style="text-align: center;">

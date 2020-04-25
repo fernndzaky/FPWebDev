@@ -34,13 +34,38 @@
     </div>
   <!--  end center 1 content -->
 
-  <div class="row p-0 m-0">
-    <div class="col-sm-6">
-    <div class="col-sm-6" style="text-align:center;padding-top:150px" >
-      <h1 style="padding-bottom:20px;color:#2EA8D1;font-family:quicksand"> ARE YOU A SOLO MUSICIAN? FIND YOUR BAND NOW! </h1>
-      <button class="btn-blue" style="border-radius: 40px;display: inline-block;">FIND BAND</button>
-      <img src="assets/bassist 1.png" style="float:left;margin-right=0px;padding-right=0px" alt="">
+  <!-- parallax -->
+    <div class="parallax" style="text-align: center;padding:80px 0px 40px 0px">
+      <h1 style="color: white;font-size: 70px">IT’S SO MUCH MORE THAN <br> JUST A BAND</h1>
     </div>
+  <!-- end of parallax -->
+
+  <!-- start content 2  -->
+  <div class="row m-0" style="padding: 80px 0px">
+    <div class="col-sm-6 pl-0" style="text-align:center;">
+      <h1 style="color:#2EA8D1;font-family:quicksand;font-weight:bold;padding:120px 50px 0px 50px"> ARE YOU A SOLO MUSICIAN? FIND YOUR BAND NOW! </h1>
+      <button class="btn-blue" style="margin-top:5%">FIND BAND</button>
+    </div>
+    <div class="col-sm-6 wow fadeInRight" style="text-align:center" >
+      <img src="assets/bassist 1.png" alt="">
     </div>
   </div>
+  <!-- end content 2 -->
+
+  <!-- bottom content -->
+  <div class="row  ml-0 mr-0" style="background-color:#0874CC;padding-top:5%">
+    <div class ="col-sm-12"style=""> 
+      <h1 style ="color:white; font-family:quicksand;font-weight:bold;text-align:center;font-size:60px"> MEET THE DEVELOPERS </h1>
+    </div>
+    <div class="col-sm-6 wow fadeInLeft" style="text-align:right;padding-top:50px">
+      <img src="assets/nugie 1.png" style="" alt="">
+      <h1 style="color:white;font-family:quicksand;font-weight:bold;margin-top:5%;padding-bottom:80px">Yohanes Haryo Nugroho</h1>
+    </div>
+    <div class="col-sm-6 wow fadeInRight" style="text-align:left;padding-top:50px">
+      <img src="assets/dzaky 1.png" style="" alt="">
+      <h1 style="color:white;font-family:quicksand;font-weight:bold;margin-top:5%;padding-bottom:80px">Fernandha Dzaky Saputra</h1> 
+    </div>
+  </div>
+  <!-- end of bottom content -->
+
 @endsection
