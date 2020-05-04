@@ -37,3 +37,20 @@ Route::get('/signup', function () {
     return view('signup');
 });
 
+Route::get('/signup-musician', function () {
+    return view('signup-musician');
+});
+
+Route::get('/signup-band', function () {
+    return view('signup-band');
+});
+
+Route::get('/signup-musician-2', function () {
+    return view('signup-musician-2');
+});
+
+
+Route::get('/signup-musician-2', function () {
+    return view('signup-musician-2');
+});
+

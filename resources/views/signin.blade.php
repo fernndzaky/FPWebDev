@@ -5,7 +5,7 @@
 
 @section('container')
 <!-- center 1 content -->
-<div class="row p-0 m-0">
+<div class="row m-0">
   <div class="col-sm-6 pl-0" > 
     <img src="assets/bassist 1.png" style="width:100%"alt="">
   </div>
@@ -18,7 +18,7 @@
       <button class="btn-blue" style="border-radius: 40px;">I HAVE A BAND</button><br><br>
     </a>
     <p>Don't have an account? <span><a href="{{ url('/signup') }}">Create new account now</a></span></p>
-</div>
+  </div>
 </div>
 <!--  end center 1 content -->
 @endsection
