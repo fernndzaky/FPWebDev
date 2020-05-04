@@ -54,3 +54,7 @@ Route::get('/signup-band-2', function () {
     return view('signup-band-2');
 });
 
+Route::get('/musician-dashboard', function () {
+    return view('musician-dashboard/musicianpage');
+});
+
