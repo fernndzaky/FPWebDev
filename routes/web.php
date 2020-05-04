@@ -50,7 +50,7 @@ Route::get('/signup-musician-2', function () {
 });
 
 
-Route::get('/signup-musician-2', function () {
-    return view('signup-musician-2');
+Route::get('/signup-band-2', function () {
+    return view('signup-band-2');
 });
 
