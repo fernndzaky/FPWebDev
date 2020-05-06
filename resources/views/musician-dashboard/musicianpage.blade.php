@@ -10,7 +10,7 @@
         <div class="col-sm-8 pl-4">
             <div style="text-align:center">
                 <h1 style="color:#0883CC;font-family:quicksand;font-weight:bold;font-size:50px">
-                    MUSICIAN NAME
+                {{ Session::get('username') }}
                 </h1>
                 <h2 style = "color:#5DC86D;font-family: Quicksand;font-weight: bold;line-height: 25px;font-size: 20px">
                     PIANIST, GENRE: JAZZ, REGION: JAKSEL

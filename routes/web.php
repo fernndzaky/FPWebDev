@@ -13,9 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', ['uses' => 'HomeController@publicIndex']);
+
+
+Route::get('/dashboard', ['uses' => 'UsersController@publicIndex']);
+
+Route::post('/dashboard', ['uses' => 'UsersController@login']);
+Route::get('/logout', ['uses' => 'UsersController@logout']);
+
 
 Route::get('/about', function () {
     return view('about');
@@ -24,6 +32,8 @@ Route::get('/about', function () {
 Route::get('/signin', function () {
     return view('signin');
 });
+
+
 
 Route::get('/signin-band', function () {
     return view('signin-band');

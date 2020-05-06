@@ -11,15 +11,22 @@
   </div>
   <div class="col-sm-6" style="text-align:center;padding:100px" >
     <h1 style="color: #2EA8D1">MUSICIAN SIGN IN</h1><br>
-    <form>
+    @if(session()->has('message'))
+          {{ session()->get('message') }}
+          @endif
+    {{ Form::open(array('action' => 'UsersController@login')) }}
+     <!-- <form action="UsersController@login"> -->
+      
       <div class="form-group">
-        <input style="color: #61BDDC" type="username" class="form-control" id="username" placeholder="INSERT USERNAME">
+        <input style="color: #61BDDC" name="username" type="username" class="form-control" id="username" placeholder="INSERT USERNAME">
       </div>
       <div class="form-group">
-      <input style="color: #61BDDC" type="password" class="form-control" id="password" placeholder="INSERT PASSWORD">
+      <input style="color: #61BDDC" name="password" type="password" class="form-control" id="password" placeholder="INSERT PASSWORD">
       </div>
- 
-      <button class="btn-blue" style="border-radius: 40px;">LOGIN</button><br><br>
+      <input class="btn-blue" style="border-radius: 40px;" type="submit" name="submit" value="LOGIN">
+
+      <!-- <button class="btn-blue" style="border-radius: 40px;"></button> -->
+      <br><br>
     </form>
     <p>Don't have an account? <span><a href="{{ url('/signup') }}">Create new account now</a></span></p>
 

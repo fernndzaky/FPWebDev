@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="css/animate.css">
 
     <title>Minder</title>
-      <!-- bottom content -->
-<style>
+    
+    <style>
     .box{
         position: relative;
     }
@@ -36,14 +36,14 @@
         border-radius:10px;
     }
     .btn-blue{
-  background-image: linear-gradient(-90deg, #0879CC,#2EA8D1);
+      background-image: linear-gradient(-90deg, #0879CC,#2EA8D1);
       color: white;
       border: none;
       border-radius: 100px;
       padding: 25px 70px;
     }
     .btn-blue:hover{
-  background-image: linear-gradient(-90deg, #2EA8D1, #2EA8D1);
+      background-image: linear-gradient(-90deg, #2EA8D1, #2EA8D1);
       color: white;
       border: none;
       border-radius: 100px;

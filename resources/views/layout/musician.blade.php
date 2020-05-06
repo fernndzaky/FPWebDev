@@ -70,9 +70,9 @@
 
     <nav class="navbar navbar-expand-lg navbar-light pt-3">
       <div class="container">
-        <a href="{{ url('/') }}">
+        
           <img src="assets/logo1.png" alt="">
-        </a>
+        
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -84,14 +84,14 @@
           <form class="form-inline my-2 my-lg-0">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active" style="padding-right:20px">
-                <a class="nav-link" href="{{ url('/appmusician') }}">APPLICATIONS</a>
+                <a class="nav-link" href="{{ url('/appmusician') }}">Applications</a>
               </li>
               <li class="nav-item active"  style="padding-right:20px">
-                <a class="nav-link" href="{{ url('/musprofile') }}">MY PROFILE</a>
+                <a class="nav-link" href="{{ url('/musprofile') }}">My Profile</a>
               </li>
               
               <li class="nav-item active"  style="padding-right:20px">
-              <a class="nav-link btn-logout" style="color:white"  href="{{ url('/logout') }}">LOG OUT</a>
+              <a class="nav-link btn-logout" style="color:white"  href="{{ url('/logout') }}">Log Out</a>
               </li>
               
           </ul>
