@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <link rel="icon" href="assets/icon.png">
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,7 +13,7 @@
 
     <title>Minder</title>
       <!-- bottom content -->
-<style>
+      <style>
     .box{
         position: relative;
     }
@@ -31,6 +32,11 @@
         border-radius:10px;
         
     }
+    .btn-signup{
+        background-color:#0883CC;
+        border-radius:10px;
+        
+    }
     .btn-login{
         background-color:#5DC86D;
         border-radius:10px;
@@ -42,6 +48,20 @@
       border-radius: 100px;
       padding: 25px 70px;
     }
+    .btn-grey{
+        background-color:#C8CDC9;
+        border-radius:10px;
+    }
+    .btn-reject{
+        background-color:#C23D3D;
+        border-radius:10px;
+        padding: 5px 10px;
+    }
+    .btn-accept{
+        background-color:#5DC86D;
+        border-radius:10px;
+        padding: 5px 10px;
+    }    
     .btn-blue:hover{
   background-image: linear-gradient(-90deg, #2EA8D1, #2EA8D1);
       color: white;
@@ -87,7 +107,7 @@
                 <a class="nav-link" href="{{ url('/appmusician') }}">Applications</a>
               </li>
               <li class="nav-item active"  style="padding-right:20px">
-                <a class="nav-link" href="{{ url('/musprofile') }}">My Profile</a>
+                <a class="nav-link" href="{{ url('/musician-dashboard') }}">My Profile</a>
               </li>
               
               <li class="nav-item active"  style="padding-right:20px">
@@ -123,3 +143,4 @@
     </script>
   </body>
 </html>
+

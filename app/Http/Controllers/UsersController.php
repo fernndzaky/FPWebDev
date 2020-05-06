@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Carbon\Traits\Test;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 use Session;
+use DB;
 
 class UsersController extends Controller
 {
@@ -17,30 +19,45 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+   
     }
     public function publicIndex()
 	{
         if (Session::get('username') == "") return Redirect::to("/");
 		$users = User::all();
-        return view('musician-dashboard/musicianpage', ['username' => $users]);
+        return view('musician-dashboard', ['username' => $users]);
     }
     
 
     public function login(Request $request) {
 			
-        $user = User::all()->where('username', $request->input("username"))->where('password', $request->input("password"));
-        $count = $user->count();
+        $users = User::all()->where('username', $request->input("username"))->where('password', $request->input("password"));
+        $count = $users->count();
         
         if ($count == 0) {
             return Redirect::to(URL::previous())->with('message', 'Invalid  Username and or Password');
         } else {
             
             $request->session()->put('username', $request->input("username"));
-            $request->session()->put('id', $user->first()->id);
-        
-            return view('musician-dashboard/musicianpage');
+            $request->session()->put('id', $users->first()->id);
+            $data = DB::table('users')
+                        -> join('details','details.detail_id','=','users.detail_id')
+                        -> join('genres','genres.genre_id','=','details.genre_id')
+                        -> join('regions','regions.region_id','=','details.region_id')
+                        -> join('instruments','instruments.instrument_id','=','details.instrument_id')
+                        -> join('status','status.status_id','=','details.status_id')
+                        -> select('details.dp_url','details.name','genres.genre_name'
+                                    ,'regions.region_name','instruments.instrument_name'
+                                    ,'details.description','status.status_name')
+                        -> get();
             
+            // return Redirect::to("musician-dashboard", compact('data'));
+            // foreach($data as $data){
+            //     Session::put('name', '{{ $data->name }}');
+            // }
+            return view('musician-dashboard/musicianpage', compact('data'));
+            
+
         }
     }
 

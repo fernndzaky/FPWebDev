@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <link rel="icon" href="assets/icon.png">
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -29,7 +30,6 @@
     .btn-signup{
         background-color:#0883CC;
         border-radius:10px;
-        
     }
     .btn-login{
         background-color:#5DC86D;

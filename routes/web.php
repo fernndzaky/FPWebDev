@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', ['uses' => 'HomeController@publicIndex']);
 
 
-Route::get('/dashboard', ['uses' => 'UsersController@publicIndex']);
+Route::get('/musician-dashboard', ['uses' => 'UsersController@publicIndex']);
 
-Route::post('/dashboard', ['uses' => 'UsersController@login']);
+Route::post('/musician-dashboard', ['uses' => 'UsersController@login']);
 Route::get('/logout', ['uses' => 'UsersController@logout']);
 
 
@@ -68,3 +68,21 @@ Route::get('/musician-dashboard', function () {
     return view('musician-dashboard/musicianpage');
 });
 
+Route::get('/musicianstatus', function () {
+    return view('musician-dashboard/musicianstatus');
+});
+Route::get('/musicianfindband', function () {
+    return view('musician-dashboard/musicianfindband');
+});
+Route::get('/musicianmatchlist', function () {
+    return view('musician-dashboard/musicianmatchlist');
+});
+Route::get('/successmusician', function () {
+    return view('musician-dashboard/successmusician');
+});
+Route::get('/musicianpage', function () {
+    return view('musician-dashboard/musicianpage');
+});
+Route::get('/appmusician', function () {
+    return view('musician-dashboard/applicationmusician');
+});
