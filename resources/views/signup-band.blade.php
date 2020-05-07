@@ -12,6 +12,7 @@
   <div class="col-sm-6" style="text-align:center;padding:100px" >
     <h1 style="color: #2EA8D1">SIGN UP</h1><br>
     <form action="{{ url('/signup-band-2') }}">
+      @csrf
       <div class="form-group">
         <input style="color: #61BDDC" type="username" class="form-control" id="username" placeholder="INSERT USERNAME">
       </div>

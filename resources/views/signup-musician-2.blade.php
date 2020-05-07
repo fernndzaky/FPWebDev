@@ -11,43 +11,46 @@
   </div>
   <div class="col-sm-6" style="padding: 10px 100px 100px 100px" >
     <h1 style="color: #2EA8D1;text-align:center;">MUSICIAN SIGN UP</h1><br>
-    <form>
+    {{ Form::open(array('action' => 'UsersController@store2')) }}
+      @csrf
       <div class="form-group">
-        <input style="color: #61BDDC" type="name" class="form-control" id="name" placeholder="INSERT YOUR NAME">
+        <input style="color: #61BDDC" type="name" name="name" class="form-control" id="name" placeholder="INSERT YOUR NAME">
       </div>
       <div class="form-group">
         <label for="genre">CHOOSE YOUR GENRE</label>
         <select class="form-control" id="genre" name="genre">
-          <option>Rock</option>
-          <option>Jazz</option>
-          <option>Indie</option>
+          @foreach($genres as $genres)
+          <option value="{{$genres->genre_id}}">{{$genres->genre_name}}</option>
+          @endforeach
         </select>
       </div>
 
       <div class="form-group">
         <label for="region">CHOOSE YOUR REGION</label>
         <select class="form-control" id="region" name="region">
-          <option>Jakarta Utara</option>
-          <option>Jakarta Barat</option>
-          <option>Jakarta Selatan</option>
+          @foreach($region as $region)
+
+          <option value="{{$region->region_id}}">{{$region->region_name}}</option>
+          @endforeach
         </select>
       </div>
 
       <div class="form-group">
         <label for="instrument">CHOOSE YOUR INSTRUMENT</label>
         <select class="form-control" id="instrument" name="instrument">
-          <option>Guitar</option>
-          <option>Drum</option>
-          <option>Bass</option>
+          @foreach($instrument as $instrument)
+
+          <option value="{{$instrument->instrument_id}}">{{$instrument->instrument_name}}</option>
+          @endforeach
         </select>
       </div>
 
       <div class="form-group">
         <label for="description">INSERT YOUR DESCRIPTION</label>
-        <textarea class="form-control" id="description" rows="3"></textarea>
+        <textarea class="form-control" name="description" id="description" rows="3"></textarea>
       </div>
       <div style="text-align:center">
-      <button class="btn-blue" style="border-radius: 40px;">SIGN UP</button><br><br>
+      <button type="submit" name="submit" class="btn-blue" style="border-radius: 40px;">SIGN UP</button><br><br>
 
       </div>
     </form>

@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Detail;
 use Carbon\Traits\Test;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
-use Session;
-use DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -23,24 +24,23 @@ class UsersController extends Controller
     }
     public function publicIndex()
 	{
-        if (Session::get('username') == "") return view('/');
-		$users = User::all();
-        return view('about', ['username' => $users]);
+        if (Session::get('username') == ""){
+            return Redirect::to("/");
+        } 
+		
+        return view('musician-dashboard/musicianpage');
+
     }
     
 
     public function login(Request $request) {
         
-			
         $users = User::all()->where('username', $request->input("username"))->where('password', $request->input("password"));
         $count = $users->count();
-        
+
         if ($count == 0) {
             return Redirect::to(URL::previous())->with('message', 'Invalid  Username and or Password');
         } else {
-            
-            $request->session()->put('username', $request->input("username"));
-            $request->session()->put('id', $users->first()->id);
             $data = DB::table('users')
                         -> join('details','details.detail_id','=','users.detail_id')
                         -> join('genres','genres.genre_id','=','details.genre_id')
@@ -48,30 +48,39 @@ class UsersController extends Controller
                         -> join('instruments','instruments.instrument_id','=','details.instrument_id')
                         -> join('status','status.status_id','=','details.status_id')
                         -> select('details.dp_url','details.name','genres.genre_name'
-                                    ,'regions.region_name','instruments.instrument_name'
-                                    ,'details.description','status.status_name')
+                                ,'regions.region_name','instruments.instrument_name'
+                                ,'details.description','status.status_name')
+                        ->where('username',$request->input("username"))
                         -> get();
-
-            foreach ($data as $data) {
-                $request->session()->put('name', $data->name );
-                $request->session()->put('instrument', $data->instrument_name );
-                $request->session()->put('genre', $data->genre_name );
-                $request->session()->put('region', $data->region_name );
-                $request->session()->put('dp_url', $data->dp_url );
-                $request->session()->put('description', $data->description );
-                $request->session()->put('status', $data->status_name );
-            }
-
-            return view('musician-dashboard/musicianpage', compact('data'));
             
+            foreach ($data as $dat) {
+                $name = $dat->name;
+                $instrument_name = $dat->instrument_name;
+                $genre_name = $dat->genre_name;
+                $region_name = $dat->region_name;
+                $dp_url = $dat->dp_url;
+                $description = $dat->description;
+                $status_name = $dat->status_name;
+            }
+            Session::put('name',$name);
+            Session::put('instrument',$instrument_name);
+            Session::put('genre',$genre_name);
+            Session::put('region',$region_name);
+            Session::put('dp_url',$dp_url);
+            Session::put('description',$description);
+            Session::put('status',$status_name);
+            Session::put('login',TRUE);
+            Session::put('username',$request->input("username"));
 
+            return view('musician-dashboard/musicianpage');
         }
     }
 
     public function logout(Request $request) {
-			
-        $request->session()->forget('username');
-        $request->session()->forget('password');
+        Session::flush();
+        
+		$request->session()->regenerate();	
+        $request->session()->flush();
         return Redirect::to(".");
     }
 
@@ -80,9 +89,54 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+   
+
+    public function store1(Request $request)
     {
-        //
+        $genres = DB::table('genres')->get();
+        $region = DB::table('regions')->get();
+        $instrument = DB::table('instruments')->get();
+        $request->session()->put('usernames', $request->input("username"));
+        $request->session()->put('passwords', $request->input("password"));
+        $request->session()->put('phones', $request->input("phone"));     
+        return view('/signup-musician-2', compact('genres','instrument','region'));
+
+    }
+    
+    public function store2(Request $request)
+    {   
+        $request->session()->put('dp_urls', 'new.png' );
+        $request->session()->put('names', $request->input("name"));
+        $request->session()->put('genres', $request->input("genre"));
+        $request->session()->put('regions', $request->input("region"));   
+        $request->session()->put('instruments', $request->input("instrument"));   
+        $request->session()->put('descriptions', $request->input("description"));   
+        $request->session()->put('statuss', 6 );
+
+        $detail = new Detail;
+        $detail->dp_url =  $request->session()->get('dp_urls');
+        $detail->name =  $request->session()->get('names');
+        $detail->genre_id =  $request->session()->get('genres');
+        $detail->region_id =  $request->session()->get('regions');
+        $detail->instrument_id =  $request->session()->get('instruments');
+        $detail->description =  $request->session()->get('descriptions');
+        $detail->status_id =  $request->session()->get('statuss');
+
+        $detail->save();
+        $detail_ids = DB::table('details')->get()->last()->detail_id;
+
+        $request->session()->put('detail_ids', $detail_ids);
+        User::create([
+            'username' => $request->session()->get('usernames'),
+            'password' => $request->session()->get('passwords'),
+            'phone' => $request->session()->get('phones'),
+            'detail_id' => $request->session()->get('detail_ids')
+        ]);
+
+   
+       
+        
+        return view('/signin-musician');
     }
 
     /**
@@ -93,7 +147,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
