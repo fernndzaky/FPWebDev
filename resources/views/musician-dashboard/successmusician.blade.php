@@ -9,12 +9,9 @@
             <a href="{{ url('/musicianpage') }}">
                 <button class="btn-blue" style="margin-top:5%font-family: Quicksand;font-weight: bold">BACK TO HOME</button>
             </a>
-            
         </div>
     </div>
     <div class="row m-0">
-
     </div>
 </div>
-
 @endsection

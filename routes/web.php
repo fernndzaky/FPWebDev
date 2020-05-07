@@ -16,12 +16,13 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::post('/dashboard', ['uses' => 'UsersController@login']);
 Route::get('/', ['uses' => 'HomeController@publicIndex']);
 
 
 Route::get('/musician-dashboard', ['uses' => 'UsersController@publicIndex']);
 
-Route::post('/musician-dashboard', ['uses' => 'UsersController@login']);
+
 Route::get('/logout', ['uses' => 'UsersController@logout']);
 
 

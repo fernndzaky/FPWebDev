@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <link rel="icon" href="assets/icon.png">
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,7 +12,7 @@
 
     <title>Minder</title>
       <!-- bottom content -->
-      <style>
+<style>
     .box{
         position: relative;
     }
@@ -104,14 +103,14 @@
           <form class="form-inline my-2 my-lg-0">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active" style="padding-right:20px">
-                <a class="nav-link" href="{{ url('/appmusician') }}">Applications</a>
+                <a class="nav-link" href="{{ url('/appmusician') }}" style="font-family:quicksand;color: #61BDDC !important;font-weight:bold">Applications</a>
               </li>
               <li class="nav-item active"  style="padding-right:20px">
-                <a class="nav-link" href="{{ url('/musician-dashboard') }}">My Profile</a>
+                <a class="nav-link" href="{{ url('/musician-dashboard') }}"style="font-family:quicksand;color: #61BDDC !important;font-weight:bold">My Profile</a>
               </li>
               
               <li class="nav-item active"  style="padding-right:20px">
-              <a class="nav-link btn-logout" style="color:white"  href="{{ url('/logout') }}">Log Out</a>
+              <a class="nav-link btn-logout" style="color:white;font-family:quicksand;font-weight:bold"  href="{{ url('/logout') }}">Log Out</a>
               </li>
               
           </ul>

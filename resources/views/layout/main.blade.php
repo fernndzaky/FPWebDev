@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <link rel="icon" href="assets/icon.png">
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -30,6 +29,7 @@
     .btn-signup{
         background-color:#0883CC;
         border-radius:10px;
+        
     }
     .btn-login{
         background-color:#5DC86D;
@@ -84,19 +84,19 @@
           <form class="form-inline my-2 my-lg-0">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active" style="padding-right:20px">
-                <a class="nav-link" href="{{ url('/signup') }}">Find Musician</a>
+                <a class="nav-link" href="{{ url('/signup') }}"style="font-family:quicksand;color: #61BDDC !important;font-weight:bold">Find Musician</a>
               </li>
               <li class="nav-item active"  style="padding-right:20px">
-                <a class="nav-link" href="{{ url('/signup') }}">Find Band</a>
+                <a class="nav-link" href="{{ url('/signup') }}"style="font-family:quicksand;color: #61BDDC !important;font-weight:bold">Find Band</a>
               </li>
               <li class="nav-item active"  style="padding-right:20px">
-                <a class="nav-link" href="{{ url('/about') }}">About Us</a>
+                <a class="nav-link" href="{{ url('/about') }}"style="font-family:quicksand;color: #61BDDC !important;font-weight:bold">About Us</a>
               </li>
               <li class="nav-item active"  style="padding-right:20px">
-              <a class="nav-link btn-signup" style="color:white"  href="{{ url('/signup') }}">Sign Up</a>
+              <a class="nav-link btn-signup" style="color:white;family-font:quicksand"  href="{{ url('/signup') }}">Sign Up</a>
               </li>
               <li class="nav-item active"  style="padding-right:20px">
-              <a class="nav-link btn-login" style="color:white"  href="{{ url('/signin') }}">Sign In</a>
+              <a class="nav-link btn-login" style="color:white;family-font:quicksand"  href="{{ url('/signin') }}">Sign In</a>
               </li>
           </ul>
           </form>

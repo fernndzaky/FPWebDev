@@ -23,13 +23,14 @@ class UsersController extends Controller
     }
     public function publicIndex()
 	{
-        if (Session::get('username') == "") return Redirect::to("/");
+        if (Session::get('username') == "") return view('/');
 		$users = User::all();
-        return view('musician-dashboard', ['username' => $users]);
+        return view('about', ['username' => $users]);
     }
     
 
     public function login(Request $request) {
+        
 			
         $users = User::all()->where('username', $request->input("username"))->where('password', $request->input("password"));
         $count = $users->count();
@@ -50,11 +51,17 @@ class UsersController extends Controller
                                     ,'regions.region_name','instruments.instrument_name'
                                     ,'details.description','status.status_name')
                         -> get();
-            
-            // return Redirect::to("musician-dashboard", compact('data'));
-            // foreach($data as $data){
-            //     Session::put('name', '{{ $data->name }}');
-            // }
+
+            foreach ($data as $data) {
+                $request->session()->put('name', $data->name );
+                $request->session()->put('instrument', $data->instrument_name );
+                $request->session()->put('genre', $data->genre_name );
+                $request->session()->put('region', $data->region_name );
+                $request->session()->put('dp_url', $data->dp_url );
+                $request->session()->put('description', $data->description );
+                $request->session()->put('status', $data->status_name );
+            }
+
             return view('musician-dashboard/musicianpage', compact('data'));
             
 
@@ -67,7 +74,6 @@ class UsersController extends Controller
         $request->session()->forget('password');
         return Redirect::to(".");
     }
-
 
     /**
      * Show the form for creating a new resource.

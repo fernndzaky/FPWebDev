@@ -3,21 +3,18 @@
 @section('container')
 <!-- START MUSICIAN PAGE -->
 <div class="container">
-    @foreach($data as $data)
-
+    <h1>{{ Session::get('username') }}</h1>
     <div class="row m-0" style="padding-top:30px">
         <div class="col-sm-4 pl-0 wow fadeInLeft">
-            <img src="assets/{{ $data->dp_url }}" style="width:100%"alt="">
+            <img src="assets/{{ Session::get('dp_url') }}" style="width:100%"alt="">
         </div>
-        
         <div class="col-sm-8 pl-4">
             <div style="text-align:center">
                 <h1 style="color:#0883CC;font-family:quicksand;font-weight:bold;font-size:50px">
-                <!-- {{ Session::get('name') }} -->
-                {{ $data->name }}
+                {{ Session::get('name') }}
                 </h1>
                 <h2 style = "color:#5DC86D;font-family: Quicksand;font-weight: bold;line-height: 25px;font-size: 20px">
-                {{ $data->instrument_name }}, GENRE: {{ $data->genre_name }}, REGION: {{ $data->region_name }}
+                {{ Session::get('instrument') }}, GENRE: {{ Session::get('genre') }}, REGION: {{ Session::get('region') }}
                 </h2>
             </div>
             <div style = "text-align:left">
@@ -25,13 +22,13 @@
                     Musician Description :
                 </p>
                 <p style="font-family: Quicksand;font-weight: bold;font-size: 18px;color: #61BDDC" >
-                    {{ $data->description }}
+                {{ Session::get('description') }}
                 </p>
             </div>
                 <div class="row p-0 m-0" style="padding-top:80px">
                     <div class="col-sm-6 pl-0" style="padding-top:10px">
                         <p style="font-family: Quicksand;font-weight: bold;font-size: 20px;color: #61BDDC">
-                            STATUS : <br> {{ $data->status_name }}
+                            STATUS : <br> {{ Session::get('status') }}
                         </p>    
                     </div>
                     <div class="col-sm-6">
@@ -41,11 +38,9 @@
                     </div>
                 </div>
         </div>
-        @endforeach
     </div>
 </div>
 <!-- END MUSICIAN PAGE -->
-
 <!-- PARALLAX -->
 <div style="padding-top:50px">
     <div class="parallax" style="text-align: center;padding:80px 0px 40px 0px">
@@ -53,7 +48,6 @@
     </div>
 </div>
 <!-- END OF PARALLAX -->
-
 <!-- START CONTENT 2  -->
 <div class="row m-0" style="padding: 80px 0px">
     <div class="col-sm-6" style="text-align:center;">
