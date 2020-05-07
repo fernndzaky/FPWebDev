@@ -3,7 +3,7 @@
 @section('container')
 <!-- START MUSICIAN PAGE -->
 <div class="container">
-    <h1>{{ Session::get('username') }}</h1>
+    
     <div class="row m-0" style="padding-top:30px">
         <div class="col-sm-4 pl-0 wow fadeInLeft">
             <img src="assets/{{ Session::get('dp_url') }}" style="width:100%"alt="">
