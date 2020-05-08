@@ -15,6 +15,9 @@
     <title>Minder</title>
       <!-- bottom content -->
 <style>
+    .option[value=""][disabled] {
+      display: none;
+    }
     .box{
         position: relative;
     }

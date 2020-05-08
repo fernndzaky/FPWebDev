@@ -8,7 +8,7 @@
             <p style="font-family: Quicksand;font-weight: bold;font-size: 40px;text-align: center;color: #3883C6">Currently you are :</p>
             <div class="form-group">
                 <select class="form-control" id="genre" name="genre">
-                    <option>Looking for Musician</option>
+                    <option value="" disabled selected>CHANGE STATUS</option>
                     <option>Pianist</option>
                     <option>Vocalist</option>
                     <option>Bassist</option>

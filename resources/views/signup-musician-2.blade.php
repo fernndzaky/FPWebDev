@@ -39,7 +39,6 @@
         <label for="instrument">CHOOSE YOUR INSTRUMENT</label>
         <select class="form-control" id="instrument" name="instrument">
           @foreach($instrument as $instrument)
-
           <option value="{{$instrument->instrument_id}}">{{$instrument->instrument_name}}</option>
           @endforeach
         </select>

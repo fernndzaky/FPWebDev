@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2020 at 04:22 PM
+-- Generation Time: May 08, 2020 at 08:36 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -46,15 +46,9 @@ CREATE TABLE `details` (
 --
 
 INSERT INTO `details` (`detail_id`, `dp_url`, `name`, `genre_id`, `region_id`, `instrument_id`, `description`, `status_id`, `updated_at`, `created_at`) VALUES
-(1, 'nugie 1.png', 'Yohanes Haryo', 1, 1, 1, 'Hi my name is yohanes nugie haryo, my binus id is 2201802922', 6, NULL, NULL),
-(2, 'new.png', 'Fernandha Dzaky', 1, 1, 1, 'hi am fernandha dzaky', 1, '2020-05-07 03:16:30', '2020-05-07 03:16:30'),
-(4, 'new.png', 'Kennis Vito Salam', 3, 2, 2, 'hi im kenins', 1, '2020-05-07 03:23:16', '2020-05-07 03:23:16'),
-(5, 'new.png', 'Winson Vito', 1, 1, 1, '123123', 1, '2020-05-07 04:49:47', '2020-05-07 04:49:47'),
-(6, 'new.png', 'raftp', 1, 1, 1, '213123', 1, '2020-05-07 04:54:36', '2020-05-07 04:54:36'),
-(7, 'new.png', 'rajwa aziz putra', 1, 1, 1, '123123', 1, '2020-05-07 05:28:46', '2020-05-07 05:28:46'),
-(8, 'new.png', 'quinn', 1, 1, 1, '12321321', 1, '2020-05-07 05:50:48', '2020-05-07 05:50:48'),
-(12, 'new.png', 'fernandha dzaky', 1, 1, 1, '213123123', 6, '2020-05-07 06:04:22', '2020-05-07 06:04:22'),
-(13, 'new.png', 'Kennis Vito Salamssss', 1, 1, 1, '123123213', 6, '2020-05-07 06:30:19', '2020-05-07 06:30:19');
+(1, 'nugie 1.png', 'Yohanes Haryo', 1, 1, 1, 'Hi my name is yohanes nugie haryo, my binus id is 2201802922', 8, NULL, NULL),
+(2, 'new.png', 'Fernandha Dzaky', 1, 1, 1, 'Hi my name is fernandha dzaky, my binus id is 2201802922', 8, '2020-05-07 03:16:30', '2020-05-07 03:16:30'),
+(3, 'new.png', 'the changcuters', 1, 1, 1, 'this band is called the changcuters. born and raised in jakarta from 1997', 7, '2020-05-07 22:55:37', '2020-05-07 22:55:37');
 
 -- --------------------------------------------------------
 
@@ -144,7 +138,27 @@ INSERT INTO `status` (`status_id`, `status_name`) VALUES
 (4, 'Currently looking for guitarist'),
 (5, 'Currently looking for bassist'),
 (6, 'Currently looking for a band'),
-(7, 'None');
+(7, 'Currently not looking for any musician'),
+(8, 'Currently not looking for any band');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `type`
+--
+
+CREATE TABLE `type` (
+  `type_id` int(11) NOT NULL,
+  `type_name` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `type`
+--
+
+INSERT INTO `type` (`type_id`, `type_name`) VALUES
+(1, 'Musician'),
+(2, 'Band');
 
 -- --------------------------------------------------------
 
@@ -154,6 +168,7 @@ INSERT INTO `status` (`status_id`, `status_name`) VALUES
 
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
+  `type_id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(50) NOT NULL,
   `phone` varchar(20) NOT NULL,
@@ -166,16 +181,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `username`, `password`, `phone`, `detail_id`, `updated_at`, `created_at`) VALUES
-(1, 'naganugie', 'password', '08111377893', 1, NULL, NULL),
-(9, 'dzaky', 'password', '213123', 2, '2020-05-07 03:17:01', '2020-05-07 03:17:01'),
-(10, 'kennis', 'password', '08111377893', 4, '2020-05-07 03:23:16', '2020-05-07 03:23:16'),
-(11, 'winson', 'password', '213213', 5, '2020-05-07 04:49:46', '2020-05-07 04:49:46'),
-(12, 'fali', 'password', '1231231', 6, '2020-05-07 04:54:36', '2020-05-07 04:54:36'),
-(13, 'rajwa', 'password', '213', 7, '2020-05-07 05:28:46', '2020-05-07 05:28:46'),
-(14, 'quinn', 'password', '12321', 8, '2020-05-07 05:50:48', '2020-05-07 05:50:48'),
-(16, 'usertest', 'password', '213123', 12, '2020-05-07 06:04:22', '2020-05-07 06:04:22'),
-(17, 'kennyfoto', 'password', '12321', 13, '2020-05-07 06:30:19', '2020-05-07 06:30:19');
+INSERT INTO `users` (`user_id`, `type_id`, `username`, `password`, `phone`, `detail_id`, `updated_at`, `created_at`) VALUES
+(1, 1, 'naganugie', 'password', '08111377893', 1, NULL, NULL),
+(9, 1, 'dzaky', 'password', '213123', 2, '2020-05-07 03:17:01', '2020-05-07 03:17:01'),
+(10, 2, 'rajwa', 'password', '12312', 3, '2020-05-07 22:55:37', '2020-05-07 22:55:37');
 
 --
 -- Indexes for dumped tables
@@ -216,11 +225,18 @@ ALTER TABLE `status`
   ADD PRIMARY KEY (`status_id`);
 
 --
+-- Indexes for table `type`
+--
+ALTER TABLE `type`
+  ADD PRIMARY KEY (`type_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`),
-  ADD KEY `detail_id` (`detail_id`);
+  ADD KEY `detail_id` (`detail_id`),
+  ADD KEY `type_id` (`type_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -230,7 +246,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `details`
 --
 ALTER TABLE `details`
-  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `genres`
@@ -254,13 +270,19 @@ ALTER TABLE `regions`
 -- AUTO_INCREMENT for table `status`
 --
 ALTER TABLE `status`
-  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `type`
+--
+ALTER TABLE `type`
+  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
@@ -276,10 +298,17 @@ ALTER TABLE `details`
   ADD CONSTRAINT `details_ibfk_4` FOREIGN KEY (`status_id`) REFERENCES `status` (`status_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `type`
+--
+ALTER TABLE `type`
+  ADD CONSTRAINT `type_ibfk_1` FOREIGN KEY (`type_id`) REFERENCES `users` (`type_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`detail_id`) REFERENCES `details` (`detail_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`detail_id`) REFERENCES `details` (`detail_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`type_id`) REFERENCES `type` (`type_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

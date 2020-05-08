@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <link rel="icon" href="assets/icon.png">
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,6 +15,9 @@
     <title>Minder</title>
       <!-- bottom content -->
 <style>
+    .option[value=""][disabled] {
+      display: none;
+    }
     .box{
         position: relative;
     }
