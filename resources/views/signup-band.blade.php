@@ -7,9 +7,9 @@
 <!-- center 1 content -->
 <div class="row p-0 m-0">
   <div class="col-sm-6 pl-0" > 
-  <img src="assets/bassist 1.png" style="width:100%"alt="">
+  <img id="bassist-img"src="assets/bassist 1.png" style="width:100%"alt="">
   </div>
-  <div class="col-sm-6" style="text-align:center;padding:100px" >
+  <div id="forum-padding"class="col-sm-6" style="text-align:center;padding:100px" >
     <h1 style="color: #2EA8D1">SIGN UP</h1><br>
     {{ Form::open(array('action' => 'UsersController@store3')) }}
       @csrf
@@ -30,7 +30,7 @@
         @enderror
       </div>
       <div class="form-group">
-        <input style="color: #61BDDC" type="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" placeholder="INSERT PHONE NUMBER">
+        <input style="color: #61BDDC" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" placeholder="INSERT PHONE NUMBER">
         @error('phone')
           <div class="invalid-feedback" style="text-align: left !important">
             {{$message}}

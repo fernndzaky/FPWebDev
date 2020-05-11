@@ -437,8 +437,19 @@ public function publicIndexAbout() {
             ->where('details.status_id',6)
 
             ->get();
-        $count = $musicians->count();
-        
+            $sent_from = $request->session()->get('detail_id');
+       
+            foreach ($musicians as $node){
+    
+                $sent_to = $node->detail_id;      
+                $applications = Application::all()->where('sent_from', $sent_from)->where('sent_to', $sent_to);
+                
+                $count = $applications->count();
+                if ($count > 0) {
+                    $musicians = $musicians->where('detail_id', '!=', $sent_to);
+                }
+            }
+            $count = $musicians->count();
             return view('band-dashboard/bandmatchlist', compact('musicians','count'));
 
     }
@@ -456,18 +467,24 @@ public function publicIndexAbout() {
             ->where('region_id',$region)
             ->where('users.type_id',2)
             ->where('details.status_id',$status_id)
-            // ->where('applications.sent_from',$request->session()->get('detail_id'))
-            // ->where('applications.sent_to',$request->session()->get('detail_id'))
             ->get();
-        $count = $bands->count();
-        $remove = 3;
+        $sent_from = $request->session()->get('detail_id');
+        // echo $bands,"<br>";
+        foreach ($bands as $node){
 
-        // $filtered = $bands->filter(function ($value, $key) use($remove){
-            
-        //     return $value->detail_id == $remove;
-        // });
-        // 
-        // return dump($bands);
+            $sent_to = $node->detail_id; 
+            // echo "sent_from",$sent_from,"<br>";
+            // echo "sent_to",$sent_to,"<br>";
+            $applications = Application::all()->where('sent_from', $sent_from)->where('sent_to', $sent_to);
+            // echo $applications;
+            $count = $applications->count();
+            if ($count > 0) {
+                $bands = $bands->where('detail_id', '!=', $sent_to);
+                // echo "found sent from ",$sent_from," to ",$sent_to;
+            }
+        }
+        $count = $bands->count();
+        // return dump ($bands);
         return view('musician-dashboard/musicianmatchlist', compact('bands','count'));
     }
     

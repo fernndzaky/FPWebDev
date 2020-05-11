@@ -17,7 +17,7 @@
   <div class="row  ml-0 mr-0" style="background-color:#0874CC;box-shadow: 0 -5px 10px -5px #333;
 ">
     <div class ="col-sm-12"style="padding-top:80px"> 
-      <h1 style ="color:white; font-family:quicksand;font-weight:bold;text-align:center;font-size:60px"> MEET THE DEVELOPERS </h1>
+      <h1 id="meet-developers" style ="color:white; font-family:quicksand;font-weight:bold;text-align:center;font-size:60px"> MEET THE DEVELOPERS </h1>
     </div>
     <div class="col-sm-6 wow fadeInLeft" style="text-align:right;padding-top:50px">
       <img src="assets/nugie 1.png" style="" alt="">

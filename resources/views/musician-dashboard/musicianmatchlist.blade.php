@@ -47,7 +47,6 @@
                         <div class="form-check">
                         <input type="checkbox" id="inlineCheckbox1" name="appliedBands[]" value="{{$bands->detail_id}}"> 
                             
-                            <!-- <input class="form-check-input" type="checkbox" name="appliedbands[]" value="{{$bands->detail_id}}" id="appliedbands"> -->
                             <label class="form-check-label" for="defaultCheck1">
                                 APPLY TO THIS MUSICIAN
                             </label>

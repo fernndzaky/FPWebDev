@@ -23,7 +23,7 @@
         margin: 0 auto;
         left: 0;
         right: 0;
-        top: 25%;  
+        top: 30%;  
         text-align: center;
         width: 60%; 
     }
@@ -52,10 +52,8 @@
     .parallax {
       /* The image used */
       background-image: url("assets/band 3.png");
-
       /* Set a specific height */
       height: 350px;
-
       /* Create the parallax scrolling effect */
       background-attachment: fixed;
       background-position: center;
@@ -72,14 +70,34 @@
     #top-title{
       font-size: 35px !important
     }
+    #morethan-txt{
+      font-size: 35px !important
+    }
+    #findband-txt{
+      padding: 50px 50px 0px 50px !important
+    }
+    #findmus-txt{
+      padding: 50px 50px  !important
+    }
+    #forum-padding{
+      padding: 50px!important
+    }
     #btn-findband{
       margin-top: 10px !important
+    }
+    #naksotoy-img{
+      display: none !important
+    }
+    #bassist-img{
+      display: none !important
     }
     .box .text{
         top: 15%;  
     }
     .btn-signup{
-
+    }
+    #meet-developers{
+      font-size:40px !important
     }
   }
     </style>
