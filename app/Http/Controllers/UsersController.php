@@ -460,10 +460,13 @@ public function publicIndexAbout() {
             // ->where('applications.sent_to',$request->session()->get('detail_id'))
             ->get();
         $count = $bands->count();
-        // foreach (($count) $items as $item) {
-            // foreach ($bands as $key => $value) {
-            //     return $bands->values();
-            // }
+        $remove = 3;
+
+        // $filtered = $bands->filter(function ($value, $key) use($remove){
+            
+        //     return $value->detail_id == $remove;
+        // });
+        // 
         // return dump($bands);
         return view('musician-dashboard/musicianmatchlist', compact('bands','count'));
     }

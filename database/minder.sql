@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2020 at 08:36 AM
+-- Generation Time: May 11, 2020 at 11:54 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -21,6 +21,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `minder`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `applications`
+--
+
+CREATE TABLE `applications` (
+  `application_id` int(11) NOT NULL,
+  `sent_from` int(11) NOT NULL,
+  `sent_to` int(11) NOT NULL,
+  `application_status` varchar(50) NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `applications`
+--
+
+INSERT INTO `applications` (`application_id`, `sent_from`, `sent_to`, `application_status`, `updated_at`, `created_at`) VALUES
+(10, 9, 3, 'Rejected', '2020-05-09 02:15:33', '2020-05-09 02:11:54'),
+(11, 9, 6, 'Contacted', '2020-05-09 02:15:41', '2020-05-09 02:11:54'),
+(12, 3, 9, 'Contacted', '2020-05-10 02:28:16', '2020-05-10 02:23:23');
 
 -- --------------------------------------------------------
 
@@ -46,9 +70,10 @@ CREATE TABLE `details` (
 --
 
 INSERT INTO `details` (`detail_id`, `dp_url`, `name`, `genre_id`, `region_id`, `instrument_id`, `description`, `status_id`, `updated_at`, `created_at`) VALUES
-(1, 'nugie 1.png', 'Yohanes Haryo', 1, 1, 1, 'Hi my name is yohanes nugie haryo, my binus id is 2201802922', 8, NULL, NULL),
-(2, 'new.png', 'Fernandha Dzaky', 1, 1, 1, 'Hi my name is fernandha dzaky, my binus id is 2201802922', 8, '2020-05-07 03:16:30', '2020-05-07 03:16:30'),
-(3, 'new.png', 'the changcuters', 1, 1, 1, 'this band is called the changcuters. born and raised in jakarta from 1997', 7, '2020-05-07 22:55:37', '2020-05-07 22:55:37');
+(3, '3.jpg', 'the changcuters', 1, 1, 6, 'this band is called the changcuters. born and raised in jakarta from 1997', 1, '2020-05-10 06:58:27', '2020-05-07 22:55:37'),
+(6, '6.jpg', 'Childish Gambino', 1, 1, 6, 'status keganti jadi drummer, tapi dp tetep acro', 1, '2020-05-10 06:29:01', '2020-05-08 08:49:03'),
+(9, '9.jpg', 'Fernandha Dzaky', 1, 1, 1, 'status not looking for any  band, tapi dp tetep jadi acro', 6, '2020-05-10 06:56:36', '2020-05-08 08:59:47'),
+(11, '11.jpg', 'Yohanes Haryo Nugroho', 1, 1, 1, 'lorem ipsum donor amet,lorem ipsum donor amet,lorem ipsum donor amet,lorem ipsum donor amet,lorem ipsum donor amet,', 8, '2020-05-10 06:28:47', '2020-05-10 06:22:21');
 
 -- --------------------------------------------------------
 
@@ -89,11 +114,12 @@ CREATE TABLE `instruments` (
 --
 
 INSERT INTO `instruments` (`instrument_id`, `instrument_name`) VALUES
-(1, 'Singer'),
+(1, 'Pianist'),
 (2, 'Drummer'),
-(3, 'Guitarist'),
-(4, 'Bassist'),
-(5, 'Pianist');
+(3, 'Singer'),
+(4, 'Guitarist'),
+(5, 'Bassist'),
+(6, 'Band');
 
 -- --------------------------------------------------------
 
@@ -182,13 +208,20 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `type_id`, `username`, `password`, `phone`, `detail_id`, `updated_at`, `created_at`) VALUES
-(1, 1, 'naganugie', 'password', '08111377893', 1, NULL, NULL),
-(9, 1, 'dzaky', 'password', '213123', 2, '2020-05-07 03:17:01', '2020-05-07 03:17:01'),
-(10, 2, 'rajwa', 'password', '12312', 3, '2020-05-07 22:55:37', '2020-05-07 22:55:37');
+(10, 2, 'rajwa', 'password', '12312', 3, '2020-05-07 22:55:37', '2020-05-07 22:55:37'),
+(13, 2, 'jasun', 'password', '12312', 6, '2020-05-08 08:49:03', '2020-05-08 08:49:03'),
+(16, 1, 'dzaky', 'password', '1231', 9, '2020-05-08 08:59:47', '2020-05-08 08:59:47'),
+(18, 1, 'naganugie', 'password', '08111377893', 11, '2020-05-10 06:22:21', '2020-05-10 06:22:21');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `applications`
+--
+ALTER TABLE `applications`
+  ADD PRIMARY KEY (`application_id`);
 
 --
 -- Indexes for table `details`
@@ -243,10 +276,16 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `applications`
+--
+ALTER TABLE `applications`
+  MODIFY `application_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT for table `details`
 --
 ALTER TABLE `details`
-  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `genres`
@@ -258,7 +297,7 @@ ALTER TABLE `genres`
 -- AUTO_INCREMENT for table `instruments`
 --
 ALTER TABLE `instruments`
-  MODIFY `instrument_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `instrument_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `regions`
@@ -282,7 +321,7 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
@@ -307,8 +346,7 @@ ALTER TABLE `type`
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`detail_id`) REFERENCES `details` (`detail_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`type_id`) REFERENCES `type` (`type_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`detail_id`) REFERENCES `details` (`detail_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

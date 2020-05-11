@@ -6,14 +6,14 @@
 @section('container')
   <!-- top content --> 
     <div class="box">
-      <img  style="width: 100%;height:700px" src="assets/band 2.jpg" alt="">
+      <img id="home-img"  style="width: 100%;height:700px" src="assets/band 2.jpg" alt="">
       <div class="text wow fadeInLeft">
-        <h1 style="color: white;font-size: 70px">YOUR TOP SOLUTION FOR FINDING BAND MEMBER</h1>
+        <h1 id="top-title" style="color: white;font-size: 70px">YOUR TOP SOLUTION FOR FINDING BAND MEMBER</h1>
         <a href="{{ url('/signin-band') }}">
           <button class="btn-blue" style="border-radius: 40px">FIND MUSICIAN</button>
         </a>
         <a href="{{ url('/signin-musician') }}">
-        <button class="btn-blue" style="border-radius: 40px;display: inline-block;">FIND BAND</button>
+        <button id="btn-findband" class="btn-blue" style="border-radius: 40px;display: inline-block;">FIND BAND</button>
         </a>
       </div>
     </div>

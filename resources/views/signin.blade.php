@@ -7,7 +7,7 @@
 <!-- center 1 content -->
 <div class="row m-0">
   <div class="col-sm-6 pl-0" > 
-    <img src="assets/bassist 1.png" style="width:100%"alt="">
+    <img id="signin-img" src="assets/bassist 1.png" style="width:100%"alt="">
   </div>
   <div class="col-sm-6" style="text-align:center;padding-top:100px" >
     <h1 style="color: #2EA8D1">SIGN IN</h1><br>

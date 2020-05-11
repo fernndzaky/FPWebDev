@@ -62,6 +62,26 @@
       background-repeat: no-repeat;
       background-size: cover;
     }
+    @media only screen and (max-width: 600px) {
+    #signin-img{
+      display: none !important
+    }
+    #home-img{
+      height: 600px !important
+    }
+    #top-title{
+      font-size: 35px !important
+    }
+    #btn-findband{
+      margin-top: 10px !important
+    }
+    .box .text{
+        top: 15%;  
+    }
+    .btn-signup{
+
+    }
+  }
     </style>
   </head>
   <body style="font-family: Quicksand">
@@ -91,11 +111,11 @@
               <li class="nav-item active"  style="padding-right:20px">
                 <a class="nav-link" href="{{ url('/about') }}"style="font-family:quicksand;color: #61BDDC !important;font-weight:bold">About Us</a>
               </li>
-              <li class="nav-item active"  style="padding-right:20px">
-              <a class="nav-link btn-signup" style="color:white;family-font:quicksand"  href="{{ url('/signup') }}">Sign Up</a>
+              <li class="nav-item active"  style="padding-right:20px;text-align:center">
+              <a class="nav-link btn-signup" style="color:white;"  href="{{ url('/signup') }}">Sign Up</a>
               </li>
-              <li class="nav-item active"  style="padding-right:20px">
-              <a class="nav-link btn-login" style="color:white;family-font:quicksand"  href="{{ url('/signin') }}">Sign In</a>
+              <li class="nav-item active"  style="padding-right:20px;text-align:center">
+              <a class="nav-link btn-login" style="color:white;"  href="{{ url('/signin') }}">Sign In</a>
               </li>
           </ul>
           </form>

@@ -111,7 +111,7 @@
                 <a class="nav-link" href="{{ url('/musician-dashboard') }}"style="font-family:quicksand;color: #61BDDC !important;font-weight:bold">My Profile</a>
               </li>
               
-              <li class="nav-item active"  style="padding-right:20px">
+              <li class="nav-item active"  style="padding-right:20px;text-align:center">
               <a class="nav-link btn-logout" style="color:white;font-family:quicksand;font-weight:bold"  href="{{ url('/logout') }}">Log Out</a>
               </li>
               
