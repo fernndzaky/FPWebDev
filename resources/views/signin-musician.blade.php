@@ -13,7 +13,8 @@
     <h1 style="color: #2EA8D1">MUSICIAN SIGN IN</h1><br>
     @if(session()->has('message'))
           {{ session()->get('message') }}
-          @endif
+    @endif
+
     {{ Form::open(array('action' => 'UsersController@login')) }}
     @csrf
      <!-- <form action="UsersController@login"> -->

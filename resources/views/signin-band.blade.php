@@ -10,7 +10,7 @@
   <img id="bassist-img"src="assets/bassist 1.png" style="width:100%"alt="">
   </div>
   <div id="forum-padding"class="col-sm-6" style="text-align:center;padding:100px" >
-    <h1 id=""style="color: #2EA8D1">BAND SIGN IN</h1><br>
+    <h1 id="  "style="color: #2EA8D1">BAND SIGN IN</h1><br>
     @if(session()->has('message'))
           {{ session()->get('message') }}
           @endif

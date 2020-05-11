@@ -1,4 +1,4 @@
-@extends('layout/band')
+@extends('layout/detail')
 @section('title','MINDER')
 @section('container')
 <!-- START MUSICIAN PAGE -->

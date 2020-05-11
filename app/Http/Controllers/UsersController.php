@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -169,106 +170,135 @@ public function publicIndexAbout() {
 
 
     public function login(Request $request) {
-        
         $username = Str::lower($request->input("username"));
-        $users = User::all()->where('username',  $username)->where('password', $request->input("password"))->where('type_id', 1);
+        $password = $request->input("password");
+
+        $users = User::all()->where('username',  $username)->where('type_id', 1);
         $count = $users->count();
-
         if ($count == 0) {
-            return Redirect::to(URL::previous())->with('message', 'Invalid  Username and or Password');
-        } else {
-            $data = DB::table('users')
-                        -> join('details','details.detail_id','=','users.detail_id')
-                        -> join('genres','genres.genre_id','=','details.genre_id')
-                        -> join('regions','regions.region_id','=','details.region_id')
-                        -> join('instruments','instruments.instrument_id','=','details.instrument_id')
-                        -> join('status','status.status_id','=','details.status_id')
-                        -> select('details.detail_id','details.dp_url','details.name','genres.genre_name'
-                                ,'regions.region_name','instruments.instrument_name','instruments.instrument_id'
-                                ,'details.description','status.status_name','status.status_id')
-                        ->where('username',$request->input("username"))
-                        -> get();
-            
-            foreach ($data as $dat) {
-                $name = $dat->name;
-                $detail_id = $dat->detail_id;
-                $instrument_name = $dat->instrument_name;
-                $instrument_id = $dat->instrument_id;
-                $genre_name = $dat->genre_name;
-                $region_name = $dat->region_name;
-                $dp_url = $dat->dp_url;
-                $description = $dat->description;
-                $status_name = $dat->status_name;
-                $status_id = $dat->status_id;
+            return Redirect::to(URL::previous())->with('message', 'Invalid  Username and or Passwords');
             }
-            Session::put('name',$name);
-            Session::put('detail_id',$detail_id);
-            Session::put('instrument',$instrument_name);
-            Session::put('instrument_id',$instrument_id);
-            Session::put('genre',$genre_name);
-            Session::put('region',$region_name);
-            Session::put('dp_url',$dp_url);
-            Session::put('description',$description);
-            Session::put('status',$status_name);
-            Session::put('status_id',$status_id);
-            Session::put('username',$request->input("username"));
-            Session::put('user_type',$request->input("musician"));
+            else{
+            $data = DB::table('users')
+                    ->where('username',$username)
+                        -> get();
+            foreach ($data as $data) {
+                $hashed_pw = $data->password;
+            }
+            
+            if(Hash::check($password, $hashed_pw)){
+                $data = DB::table('users')
+                -> join('details','details.detail_id','=','users.detail_id')
+                -> join('genres','genres.genre_id','=','details.genre_id')
+                -> join('regions','regions.region_id','=','details.region_id')
+                -> join('instruments','instruments.instrument_id','=','details.instrument_id')
+                -> join('status','status.status_id','=','details.status_id')
+                -> select('details.detail_id','details.dp_url','details.name','genres.genre_name'
+                        ,'regions.region_name','instruments.instrument_name','instruments.instrument_id'
+                        ,'details.description','status.status_name','status.status_id')
+                ->where('username',$request->input("username"))
+                -> get();
+    
+                foreach ($data as $dat) {
+                    $name = $dat->name;
+                    $detail_id = $dat->detail_id;
+                    $instrument_name = $dat->instrument_name;
+                    $instrument_id = $dat->instrument_id;
+                    $genre_name = $dat->genre_name;
+                    $region_name = $dat->region_name;
+                    $dp_url = $dat->dp_url;
+                    $description = $dat->description;
+                    $status_name = $dat->status_name;
+                    $status_id = $dat->status_id;
+                }
+                Session::put('name',$name);
+                Session::put('detail_id',$detail_id);
+                Session::put('instrument',$instrument_name);
+                Session::put('instrument_id',$instrument_id);
+                Session::put('genre',$genre_name);
+                Session::put('region',$region_name);
+                Session::put('dp_url',$dp_url);
+                Session::put('description',$description);
+                Session::put('status',$status_name);
+                Session::put('status_id',$status_id);
+                Session::put('username',$request->input("username"));
+                Session::put('user_type',$request->input("musician"));
+                return view('musician-dashboard/musicianpage');
 
-            return view('musician-dashboard/musicianpage');
         }
     }
+    }
+        
+  
 
     public function loginBand(Request $request) {
-        $username = Str::lower($request->input("username"));
+        // $username = Str::lower($request->input("username"));
 
-        $users = User::all()->where('username', $username)->where('password', $request->input("password"))->where('type_id', 2);
+        // $users = User::all()->where('username', $username)->where('password', $request->input("password"))->where('type_id', 2);
+        // $count = $users->count();
+
+        $username = Str::lower($request->input("username"));
+        $password = $request->input("password");
+
+        $users = User::all()->where('username',  $username)->where('type_id', 2);
         $count = $users->count();
 
         if ($count == 0) {
             return Redirect::to(URL::previous())->with('message', 'Invalid  Username and or Passwords');
-        } else {
-            $data = DB::table('users')
-            -> join('details','details.detail_id','=','users.detail_id')
-            -> join('genres','genres.genre_id','=','details.genre_id')
-            -> join('regions','regions.region_id','=','details.region_id')
-            -> join('instruments','instruments.instrument_id','=','details.instrument_id')
-            -> join('status','status.status_id','=','details.status_id')
-            -> select('details.detail_id','details.dp_url','details.name','genres.genre_name'
-                    ,'regions.region_name','instruments.instrument_name'
-                    ,'details.description','status.status_name','status.status_id')
-            ->where('username',$request->input("username"))
-            -> get();
-            
-            foreach ($data as $dat) {
-                $name = $dat->name;
-                $detail_id = $dat->detail_id;
-                $instrument_name = $dat->instrument_name;
-                $genre_name = $dat->genre_name;
-                $region_name = $dat->region_name;
-                $dp_url = $dat->dp_url;
-                $description = $dat->description;
-                $status_name = $dat->status_name;
-                $status_id = $dat->status_id;
             }
-            Session::put('name',$name);
-            Session::put('detail_id',$detail_id);
-            Session::put('instrument',$instrument_name);
-            Session::put('genre',$genre_name);
-            Session::put('region',$region_name);
-            Session::put('dp_url',$dp_url);
-            Session::put('description',$description);
-            Session::put('status',$status_name);
-            Session::put('status_id', $status_id);
-            Session::put('username',$request->input("username"));
-            Session::put('user_type',$request->input("band"));
-            return view('band-dashboard/bandpage');
-        }
+            else{
+                $data = DB::table('users')
+                ->where('username',$username)
+                    -> get();
+                foreach ($data as $data) {
+                    $hashed_pw = $data->password;
+                }
+        
+                if(Hash::check($password, $hashed_pw)){
+                    $data = DB::table('users')
+                    -> join('details','details.detail_id','=','users.detail_id')
+                    -> join('genres','genres.genre_id','=','details.genre_id')
+                    -> join('regions','regions.region_id','=','details.region_id')
+                    -> join('instruments','instruments.instrument_id','=','details.instrument_id')
+                    -> join('status','status.status_id','=','details.status_id')
+                    -> select('details.detail_id','details.dp_url','details.name','genres.genre_name'
+                            ,'regions.region_name','instruments.instrument_name'
+                            ,'details.description','status.status_name','status.status_id')
+                    ->where('username',$request->input("username"))
+                    -> get();
+                    
+                    foreach ($data as $dat) {
+                        $name = $dat->name;
+                        $detail_id = $dat->detail_id;
+                        $instrument_name = $dat->instrument_name;
+                        $genre_name = $dat->genre_name;
+                        $region_name = $dat->region_name;
+                        $dp_url = $dat->dp_url;
+                        $description = $dat->description;
+                        $status_name = $dat->status_name;
+                        $status_id = $dat->status_id;
+                    }
+                    Session::put('name',$name);
+                    Session::put('detail_id',$detail_id);
+                    Session::put('instrument',$instrument_name);
+                    Session::put('genre',$genre_name);
+                    Session::put('region',$region_name);
+                    Session::put('dp_url',$dp_url);
+                    Session::put('description',$description);
+                    Session::put('status',$status_name);
+                    Session::put('status_id', $status_id);
+                    Session::put('username',$request->input("username"));
+                    Session::put('user_type',$request->input("band"));
+                //    echo"test";
+                    return view('band-dashboard/bandpage');
+                }
+    }
     }
 
     public function logout(Request $request) {
         Session::flush();
 		$request->session()->regenerate();	
-        $request->session()->flush();
+        // $request->session()->flush();
         return Redirect::to(".");
     }
 
@@ -321,17 +351,17 @@ public function publicIndexAbout() {
         $request->session()->put('statuss', 8 );
 
 
-            $detail = new Detail;
-            $detail->dp_url =  $request->session()->get('dp_urls');
+        $detail = new Detail;
+        $detail->dp_url =  $request->session()->get('dp_urls');
 
-            $detail->name =  $request->session()->get('names');
-            $detail->genre_id =  $request->session()->get('genres');
-            $detail->region_id =  $request->session()->get('regions');
-            $detail->instrument_id =  $request->session()->get('instruments');
-            $detail->description =  $request->session()->get('descriptions');
-            $detail->status_id =  $request->session()->get('statuss');
-    
-            $detail->save();
+        $detail->name =  $request->session()->get('names');
+        $detail->genre_id =  $request->session()->get('genres');
+        $detail->region_id =  $request->session()->get('regions');
+        $detail->instrument_id =  $request->session()->get('instruments');
+        $detail->description =  $request->session()->get('descriptions');
+        $detail->status_id =  $request->session()->get('statuss');
+
+        $detail->save();
         
 
         $detail->dp_url =  $request->session()->get('dp_urls');
@@ -341,7 +371,7 @@ public function publicIndexAbout() {
         User::create([
             'type_id' => $request->session()->get('types'),
             'username' => $request->session()->get('usernames'),
-            'password' => $request->session()->get('passwords'),
+            'password' => Hash::make($request->session()->get('passwords')),
             'phone' => $request->session()->get('phones'),
             'detail_id' => $request->session()->get('detail_ids')
         ]);
@@ -365,12 +395,10 @@ public function publicIndexAbout() {
         ]);
         // END OF VALIDATIONS
         return view('/signup-band-2', compact('genres','instrument','region'));
-
     }
 
     public function store4(Request $request)
     {   
-        
         //END OF VALIDATIONS
         $request->session()->put('dp_urls', 'new.png' );
         $request->session()->put('names', $request->input("name"));
@@ -396,7 +424,7 @@ public function publicIndexAbout() {
         User::create([
             'type_id' => $request->session()->get('types'),
             'username' => $request->session()->get('usernames'),
-            'password' => $request->session()->get('passwords'),
+            'password' => Hash::make($request->session()->get('passwords')),
             'phone' => $request->session()->get('phones'),
             'detail_id' => $request->session()->get('detail_ids')
         ]);
@@ -508,6 +536,12 @@ public function publicIndexAbout() {
      */
     public function show($detail_id)
     {
+        $users = Detail::all()->where('detail_id',  $detail_id);
+        $count = $users->count();
+        if($count == 0){
+            return Redirect::to("/");
+        }
+        else{
         $data = DB::table('users')
                         -> join('details','details.detail_id','=','users.detail_id')
                         -> join('genres','genres.genre_id','=','details.genre_id')
@@ -516,16 +550,45 @@ public function publicIndexAbout() {
                         -> join('status','status.status_id','=','details.status_id')
                         -> select('details.dp_url','details.name','genres.genre_name'
                                 ,'regions.region_name','instruments.instrument_name'
-                                ,'details.description','status.status_name')
+                                ,'details.description','status.status_name','users.type_id')
                         ->where('details.detail_id', $detail_id)
                         -> get();
+
+        foreach($data as $data){
+            $type_id = $data->type_id;
+        }
+        if($type_id == 1){
+            return Redirect::to("/");
+        }
+        $data = DB::table('users')
+                        -> join('details','details.detail_id','=','users.detail_id')
+                        -> join('genres','genres.genre_id','=','details.genre_id')
+                        -> join('regions','regions.region_id','=','details.region_id')
+                        -> join('instruments','instruments.instrument_id','=','details.instrument_id')
+                        -> join('status','status.status_id','=','details.status_id')
+                        -> select('details.dp_url','details.name','genres.genre_name'
+                                ,'regions.region_name','instruments.instrument_name'
+                                ,'details.description','status.status_name','users.type_id')
+                        ->where('details.detail_id', $detail_id)
+                        -> get();
+        
+            return view('musician-dashboard/bandprofile',compact('data'));
+
+        
                         // return view('musician-dashboard/bandprofile',compact('data'));
-                        return view('musician-dashboard/bandprofile',compact('data'));
 
                     }
-
+                }
     public function show2($detail_id)
     {
+        $users = Detail::all()->where('detail_id',  $detail_id);
+        $count = $users->count();
+        if($count == 0){
+            return Redirect::to("/");
+        }
+        else{
+
+      
         $data = DB::table('users')
                         -> join('details','details.detail_id','=','users.detail_id')
                         -> join('genres','genres.genre_id','=','details.genre_id')
@@ -534,15 +597,32 @@ public function publicIndexAbout() {
                         -> join('status','status.status_id','=','details.status_id')
                         -> select('details.dp_url','details.name','genres.genre_name'
                                 ,'regions.region_name','instruments.instrument_name'
-                                ,'details.description','status.status_name')
+                                ,'details.description','status.status_name','users.type_id')
                         ->where('details.detail_id', $detail_id)
                         -> get();
-                        // return view('band-dashboard/musicianprofile',compact('data'));
+
+    foreach($data as $data){
+        $type_id = $data->type_id;
+    }
+    if($type_id == 2){
+        return Redirect::to("/");
+    }
+    $data = DB::table('users')
+                        -> join('details','details.detail_id','=','users.detail_id')
+                        -> join('genres','genres.genre_id','=','details.genre_id')
+                        -> join('regions','regions.region_id','=','details.region_id')
+                        -> join('instruments','instruments.instrument_id','=','details.instrument_id')
+                        -> join('status','status.status_id','=','details.status_id')
+                        -> select('details.dp_url','details.name','genres.genre_name'
+                                ,'regions.region_name','instruments.instrument_name'
+                                ,'details.description','status.status_name','users.type_id')
+                        ->where('details.detail_id', $detail_id)
+                        -> get();
     return view('band-dashboard/musicianprofile',compact('data'));
 
     // return view('band-dashboard/musicianprofile',compact('data'));
     }
-
+}
     public function apply(Request $request)
     {
         $services = $request->input('appliedbands');
