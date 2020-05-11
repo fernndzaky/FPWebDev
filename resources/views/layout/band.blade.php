@@ -1,7 +1,9 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <link rel="icon" href="assets/icon.png">
+    <link rel="icon" href="
+    {{ url('assets/icon.png') }}
+    ">
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -10,7 +12,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand" />
-    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="
+    {{ url('css/animate.css') }}">
 
     <title>Minder</title>
       <!-- bottom content -->
@@ -95,7 +98,7 @@
     <nav class="navbar navbar-expand-lg navbar-light pt-3">
       <div class="container">
         
-          <img src="assets/logo1.png" alt="">
+          <img src="{{ url('assets/logo1.png') }}" alt="">
         
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -128,7 +131,10 @@
 
     <div class="container pt-5 pb-5"style="text-align: center;">
       <div class="col-12" >
-        <img src="assets/logo1.png" alt="">
+        
+        <img src="
+        {{ url('assets/logo1.png') }}
+        " alt="">
       </div>
       <div class="col-12">
       <p style="color:#2EA8D1">A Website Development & Security Final Project By : Yohanes Haryo Nugroho and Fernandha Dzaky</p>

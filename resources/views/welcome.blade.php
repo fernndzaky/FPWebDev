@@ -7,7 +7,7 @@
   <!-- top content --> 
     <div class="box">
       <img  style="width: 100%;height:700px" src="assets/band 2.jpg" alt="">
-      <div class="text wow fadeInRight">
+      <div class="text wow fadeInLeft">
         <h1 style="color: white;font-size: 70px">YOUR TOP SOLUTION FOR FINDING BAND MEMBER</h1>
         <a href="{{ url('/signin-band') }}">
           <button class="btn-blue" style="border-radius: 40px">FIND MUSICIAN</button>
@@ -57,7 +57,7 @@
     <div class ="col-sm-12"style=""> 
       <h1 style ="color:white; font-family:quicksand;font-weight:bold;text-align:center;font-size:60px"> MEET THE DEVELOPERS </h1>
     </div>
-    <div class="col-sm-6 wow fadeInLeft" style="text-align:right;padding-top:50px">
+    <div class="col-sm-6 wow fadeInRight" style="text-align:right;padding-top:50px">
       <img src="assets/nugie 1.png" style="" alt="">
       <h1 style="color:white;font-family:quicksand;font-weight:bold;margin-top:5%;padding-bottom:80px">Yohanes Haryo Nugroho</h1>
     </div>

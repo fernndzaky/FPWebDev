@@ -14,7 +14,12 @@
     {{ Form::open(array('action' => 'UsersController@store2')) }}
       @csrf
       <div class="form-group">
-        <input style="color: #61BDDC" type="name" name="name" class="form-control" id="name" placeholder="INSERT YOUR NAME">
+        <input required style="color: #61BDDC" type="name" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="INSERT YOUR NAME">
+        @error('name')
+          <div class="invalid-feedback" style="text-align: left !important">
+            {{$message}}
+          </div>
+        @enderror
       </div>
       <div class="form-group">
         <label for="genre">CHOOSE YOUR GENRE</label>
@@ -46,7 +51,12 @@
 
       <div class="form-group">
         <label for="description">INSERT YOUR DESCRIPTION</label>
-        <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+        <textarea required class="form-control @error('description') is-invalid @enderror" name="description" id="description" rows="3"></textarea>
+        @error('description')
+          <div class="invalid-feedback" style="text-align: left !important">
+            {{$message}}
+          </div>
+        @enderror
       </div>
       <div style="text-align:center">
       <button type="submit" name="submit" class="btn-blue" style="border-radius: 40px;">SIGN UP</button><br><br>

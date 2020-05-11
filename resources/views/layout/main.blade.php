@@ -23,14 +23,13 @@
         margin: 0 auto;
         left: 0;
         right: 0;
-        top: 40%;  
+        top: 25%;  
         text-align: center;
         width: 60%; 
     }
     .btn-signup{
         background-color:#0883CC;
         border-radius:10px;
-        
     }
     .btn-login{
         background-color:#5DC86D;
@@ -49,7 +48,6 @@
       border: none;
       border-radius: 100px;
       padding: 25px 70px;
-
     }
     .parallax {
       /* The image used */

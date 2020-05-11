@@ -7,36 +7,33 @@
             <img class="img-fluid"src="assets/bassist 1.png" alt="">
         </div>
         <div class="col-sm-6" style="text-align:center;">
+        {{ Form::open(array('action' => 'UsersController@findBand2')) }}
+                    @csrf
                 <label for="genre" style="font-family: Quicksand;font-weight: bold;font-size: 60px;font-size: 60px;color: #2EA8D1">FIND A BAND</label>
             <div class="form-group">
-                <select class="form-control" id="genre" name="genre">
+                <select required class="form-control" id="genre" name="genre">
                 <label for="genre">CHOOSE BAND GENRE</label>
-                    <option>Rock</option>
-                    <option>Jazz</option>
-                    <option>Indie</option>
+                    <option value="" disabled selected>SELECT DESIRED GENRE</option>
+
+                    @foreach($genres as $genres)
+                        <option value="{{$genres->genre_id}}">{{$genres->genre_name}}</option>
+                    @endforeach
                 </select>
             </div>
                 <div class="form-group">
-                    <select class="form-control" id="region" name="region">
+                    <select required class="form-control" id="region" name="region">
                     <label for="region">REGION</label>
-                        <option>Jakarta Utara</option>
-                        <option>Jakarta Barat</option>
-                        <option>Jakarta Selatan</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <select class="form-control" id="instrument" name="instrument">
-                    <label for="instrument">INSTRUMENT</label>
-                        <option>INSTRUMENT</option>
-                        <option>GUITAR</option>
-                        <option>DRUM</option>
-                        <option>BASS</option>
-                        <option>VOCAL</option>
+                    <option value="" disabled selected>SELECT DESIRED REGION</option>
+
+                    @foreach($regions as $regions)
+                        <option value="{{$regions->region_id}}">{{$regions->region_name}}</option>
+                    @endforeach
                     </select>
                 </div>
                 <a href="{{ url('/musicianmatchlist') }}">
                 <button class="btn-blue" style="margin-top:5%">NEXT</button>
                 </a>
+            </form>
         </div>
             </div>
     </div>

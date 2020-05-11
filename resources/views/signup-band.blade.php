@@ -14,13 +14,28 @@
     {{ Form::open(array('action' => 'UsersController@store3')) }}
       @csrf
       <div class="form-group">
-        <input style="color: #61BDDC" type="username" class="form-control" name="username" id="username" placeholder="INSERT USERNAME">
+        <input style="color: #61BDDC" type="username" class="form-control @error('username') is-invalid @enderror" name="username" id="username" placeholder="INSERT USERNAME">
+        @error('username')
+          <div class="invalid-feedback" style="text-align: left !important">
+            {{$message}}
+          </div>
+        @enderror
       </div>
       <div class="form-group">
-        <input style="color: #61BDDC" type="password" class="form-control" name="password" id="password" placeholder="INSERT PASSWORD">
+        <input style="color: #61BDDC" type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" placeholder="INSERT PASSWORD">
+        @error('password')
+          <div class="invalid-feedback" style="text-align: left !important">
+            {{$message}}
+          </div>
+        @enderror
       </div>
       <div class="form-group">
-        <input style="color: #61BDDC" type="phone" class="form-control" name="phone" id="phone" placeholder="INSERT PHONE NUMBER">
+        <input style="color: #61BDDC" type="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" placeholder="INSERT PHONE NUMBER">
+        @error('phone')
+          <div class="invalid-feedback" style="text-align: left !important">
+            {{$message}}
+          </div>
+        @enderror
       </div>
  
       <button type="submit" name="submit" class="btn-blue" style="border-radius: 40px;">NEXT</button><br><br>

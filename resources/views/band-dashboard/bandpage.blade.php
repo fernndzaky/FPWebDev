@@ -4,15 +4,15 @@
 <!-- START MUSICIAN PAGE -->
 <div class="container">
     <div class="row m-0" style="padding-top:30px">
-    <div class="col-sm-4 pl-0 wow fadeInLeft" style="text-align: center">
-        <img src="assets/musician_dp/{{ Session::get('dp_url') }}" style="width:70%"alt="">
+    <div class="col-sm-4 pl-0 wow slideInLeft" style="text-align: center">
+        <img src="assets/band_dp/{{ Session::get('dp_url') }}" style="max-width:350px;max-height:338px;width:auto"alt="">
         </div>
         <div class="col-sm-8 pl-4">
             <div style="text-align:center">
                 <h1 style="color:#0883CC;font-family:quicksand;font-weight:bold;font-size:50px">
                 {{ Session::get('name') }}
                 </h1>
-                <h2 style = "color:#5DC86D;font-family: Quicksand;font-weight: bold;line-height: 25px;font-size: 20px">
+                <h2 class="wow bounceInDown"  style = "color:#5DC86D;font-family: Quicksand;font-weight: bold;line-height: 25px;font-size: 20px">
                 GENRE : {{ Session::get('genre') }}, REGION : {{ Session::get('region') }}
                 </h2>
             </div>
@@ -30,9 +30,10 @@
                         </p>    
                     </div>
                     <div class="col-sm-6">
-                    <a href="{{ url('/bandstatus') }}">
+                    {{ Form::open(array('action' => 'UsersController@edit2')) }}
+                    @csrf
                         <button class="btn-blue" style="border-radius:50px;font-family: Quicksand"> CHANGE STATUS </button><br><br>
-                    </a>
+                    </form>
                     </div>
                 </div>
         </div>

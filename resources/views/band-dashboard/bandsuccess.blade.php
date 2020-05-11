@@ -6,14 +6,11 @@
         <div class="col-sm-12"style="text-align:center">
             <img class ="wow flip"src= "assets/ok.png" style="width:30%"alt="">
             <p class="wow tada"style="font-family: Quicksand;font-weight: bold;font-size: 50px;text-align: center;color: #2EA8D1;"> SUCCESSFULY APPLIED TO THE MUSICIAN !</p>
-            <a href="{{ url('/bandpage') }}">
-                <button class="btn-blue" style="margin-top:5%font-family: Quicksand;font-weight: bold">BACK TO HOME</button>
+            <a href="{{ url('/band-dashboard') }}">
+                <button class="btn-blue" style="margin-top:5%;font-family: Quicksand;font-weight: bold">BACK TO HOME</button>
             </a>
             
         </div>
-    </div>
-    <div class="row m-0">
-
     </div>
 </div>
 

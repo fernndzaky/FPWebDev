@@ -26,6 +26,8 @@ class HomeController extends Controller
         return view('musician-dashboard/musicianpage', ['username' => $users]);
     }
 
+   
+
     /**
      * Show the form for creating a new resource.
      *

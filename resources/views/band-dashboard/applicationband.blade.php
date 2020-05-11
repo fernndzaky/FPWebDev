@@ -7,28 +7,28 @@
             <p style="font-family:quicksand;font-weight: bold;color: #2EA8D1;font-size: 60px;"> APPLICATION SENT TO MUSICIANS</p>
         </div>
     </div>
+    
     <table class="table table-striped"style="text-align:center;font-family:quicksand;font-weight:bold">
         <thead>
             <tr>
             <th scope="col">NO</th>
             <th scope="col">NAME</th>
-            <th scope="col">POSITION</th>
+            <th scope="col">INSTRUMENTS</th>
             <th scope="col">STATUS</th>
             </tr>
         </thead>
         <tbody>
+            
+        @foreach($sent_from as $sent_from)
+                
             <tr>
-            <th scope="row">1</th>
-            <td>FERNANDHA DZAKY</td>
-            <td>PIANIST</td>
-            <td style="color:red">REJECTED</td>
+            <th scope="row">{{$loop->iteration}}</th>
+            <td>{{$sent_from->name}}</td>
+            <td>{{$sent_from->instrument_name}}</td>
+            <td style="color:<?php if($sent_from->application_status=="Applied") echo "black"; else if($sent_from->application_status=="Contacted") echo "#5DC86D"; else echo "red"; ?>">{{$sent_from->application_status}}</td>
             </tr>
-            <tr>
-            <th scope="row">2</th>
-            <td>YOHANES HARYO NUGROHO</td>
-            <td>PIANIST</td>
-            <td style="color:green;">ACCEPTED</td>
-            </tr>
+          
+            @endforeach
         </tbody>
     </table>
 
@@ -42,28 +42,47 @@
                     <tr>
                     <th scope="col">NO</th>
                     <th scope="col">NAME</th>
-                    <th scope="col">POSITION</th>
-                    <th scope="col">STATUS</th>
+                    <th scope="col">INSTRUMENTS</th>
+                    <th scope="col">ACTION</th>
                     </tr>
                 </thead>
                 <tbody>
+                @foreach($sent_to as $sent_to)
+
                     <tr>
-                    <th scope="row">1</th>
-                    <td>FERNANDHA DZAKY</td>
-                    <td>PIANIST</td>
-                    <td >
-                        <button class="btn-accept" style="color:white;font-weight:bold">CONTACT</button>
-                        <button class="btn-reject" style="color:white;font-weight:bold">REJECT</button></td>
+                    <th scope="row">{{$loop->iteration}}</th>
+                    <td>{{$sent_to->name}}</td>
+                    <td>{{$sent_to->instrument_name}}</td>
+                    <?php if($sent_to->application_status=="Contacted") {?>
+                        <td style="color:#5DC86D">
+                            <a target="_blank" href="https://wa.me/{{$sent_to->phone}}?text=I'm%20interested%20in%20you%20as%20musician">
+                                Phone ({{$sent_to->phone}})
+                            </a>
+                        </td>                    <?php }
+                    
+                    else if($sent_to->application_status=="Rejected") {?>
+                        <td style="color:red">{{$sent_to->application_status}}</td>
+                    <?php }
+                    
+                    else {?>
+                        <td >
+                            <form method="post" action="update-contacted/{{$sent_to->application_id}}" style="display:inline-block">
+                                @method('patch')
+                                @csrf
+                                <button class="btn-accept" style="color:white;font-weight:bold">CONTACT</button>
+                            </form>
+                            <form method="post" action="update-rejected/{{$sent_to->application_id}}" style="display:inline-block">
+                                @method('patch')
+                                @csrf
+                                <button class="btn-reject" style="color:white;font-weight:bold;">REJECT</button>
+                            </form>
+                        </td>
+                    <?php } ?>
+                    
                     </tr>
-                    <tr>
-                    <th scope="row">2</th>
-                    <td>YOHANES HARYO NUGROHO</td>
-                    <td>PIANIST</td>
-                    <td>
-                        <button class="btn-accept" style="color:white;font-weight:bold">CONTACT</button>
-                        <button class="btn-reject" style="color:white;font-weight:bold">REJECT</button>
-                    </td>
-                    </tr>
+                    @endforeach
+
+                    
                 </tbody>
             </table>
         </div>
