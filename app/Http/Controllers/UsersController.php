@@ -172,6 +172,9 @@ public function publicIndexAbout() {
     public function login(Request $request) {
         $username = Str::lower($request->input("username"));
         $password = $request->input("password");
+        
+        
+
 
         $users = User::all()->where('username',  $username)->where('type_id', 1);
         $count = $users->count();
@@ -185,7 +188,7 @@ public function publicIndexAbout() {
             foreach ($data as $data) {
                 $hashed_pw = $data->password;
             }
-            
+          
             if(Hash::check($password, $hashed_pw)){
                 $data = DB::table('users')
                 -> join('details','details.detail_id','=','users.detail_id')
@@ -353,27 +356,24 @@ public function publicIndexAbout() {
 
         $detail = new Detail;
         $detail->dp_url =  $request->session()->get('dp_urls');
-
         $detail->name =  $request->session()->get('names');
         $detail->genre_id =  $request->session()->get('genres');
         $detail->region_id =  $request->session()->get('regions');
         $detail->instrument_id =  $request->session()->get('instruments');
         $detail->description =  $request->session()->get('descriptions');
         $detail->status_id =  $request->session()->get('statuss');
-
         $detail->save();
         
-
-        $detail->dp_url =  $request->session()->get('dp_urls');
+        // $detail->dp_url =  $request->session()->get('dp_urls');
         $detail_ids = DB::table('details')->get()->last()->detail_id;
 
-        $request->session()->put('detail_ids', $detail_ids);
+        // $request->session()->put('detail_ids', $detail_ids);
         User::create([
             'type_id' => $request->session()->get('types'),
             'username' => $request->session()->get('usernames'),
             'password' => Hash::make($request->session()->get('passwords')),
             'phone' => $request->session()->get('phones'),
-            'detail_id' => $request->session()->get('detail_ids')
+            'detail_id' => $detail_ids
         ]);
         
         return view('/signin-musician');
@@ -445,22 +445,30 @@ public function publicIndexAbout() {
     }
 
     public function findBand1(Request $request){
+        // $request->session()->put('temp_region',DB::table('regions')->get());
+        // $request->session()->put('temp_genres',DB::table('genres')->get());
+
         $regions = DB::table('regions')->get();
         $genres = DB::table('genres')->get();    
         return view('musician-dashboard/musicianfindband', compact('genres','regions'));
     }
 
     public function findMusician2(Request $request){
-
         $region = $request->input("region");
         $genre = $request->input("genre");
         $instrument = $request->input("instrument");
         
+        Session::put('temp_region2',$region);
+        Session::put('temp_genre2',$genre);
+        Session::put('temp_instrument2',$instrument);
+      
+        
+        
         $musicians = DB::table('details')
             -> join('users','users.detail_id','=','details.detail_id')
-            ->where('genre_id',$genre)
-            ->where('instrument_id',$instrument)
-            ->where('region_id',$region)
+            ->where('genre_id',$request->session()->get('temp_genre2'))
+            ->where('instrument_id',$request->session()->get('temp_instrument2'))
+            ->where('region_id',$request->session()->get('temp_region2'))
             ->where('type_id',1)
             ->where('details.status_id',6)
 
@@ -478,23 +486,26 @@ public function publicIndexAbout() {
                 }
             }
             $count = $musicians->count();
+            // return $request->session()->get('temp_region2');
             return view('band-dashboard/bandmatchlist', compact('musicians','count'));
 
     }
 
     public function findBand2(Request $request){
-
-        $region = $request->input("region");
-        $genre = $request->input("genre");
-        $status_id = $request->session()->get('instrument_id');
+        $request->session()->put('temp_region',$request->input("region"));
+        $request->session()->put('temp_genres',$request->input("genre"));
+        $request->session()->put('temp_status_id',$request->session()->get('instrument_id'));
+        // $region = $request->input("region");
+        // $genre = $request->input("genre");
+        // $status_id = $request->session()->get('instrument_id');
         
         $bands = DB::table('details')
             -> join('users','users.detail_id','=','details.detail_id')
             // -> join('applications','applications.sent_from','=',$request->session()->get('detail_id'))
-            ->where('genre_id',$genre)
-            ->where('region_id',$region)
+            ->where('genre_id',$request->session()->get('temp_genres'))
+            ->where('region_id',$request->session()->get('temp_region'))
             ->where('users.type_id',2)
-            ->where('details.status_id',$status_id)
+            ->where('details.status_id',$request->session()->get('temp_status_id'))
             ->get();
         $sent_from = $request->session()->get('detail_id');
         // echo $bands,"<br>";
@@ -625,7 +636,45 @@ public function publicIndexAbout() {
 }
     public function apply(Request $request)
     {
-        $services = $request->input('appliedbands');
+
+        $services = $request->input('appliedMusicians');
+        if($services == ""){
+
+            $region = $request->session()->get('temp_region2');
+            $genre =$request->session()->get('temp_genre2');
+            $instrument = $request->session()->get('temp_instrument2');
+
+        
+        
+        $musicians = DB::table('details')
+            -> join('users','users.detail_id','=','details.detail_id')
+            ->where('genre_id',$genre)
+            ->where('instrument_id',$instrument)
+            ->where('region_id',$region)
+            ->where('type_id',1)
+            ->where('details.status_id',6)
+
+            ->get();
+            $sent_from = $request->session()->get('detail_id');
+       
+            foreach ($musicians as $node){
+    
+                $sent_to = $node->detail_id;      
+                $applications = Application::all()->where('sent_from', $sent_from)->where('sent_to', $sent_to);
+                
+                $count = $applications->count();
+                if ($count > 0) {
+                    $musicians = $musicians->where('detail_id', '!=', $sent_to);
+                }
+            }
+            $count = $musicians->count();
+            return view('band-dashboard/bandmatchlist', compact('musicians','count'));
+
+
+
+
+
+        }else{
         for($i=0;$i<sizeof($services); $i++) {
          
             $apply = new Application;
@@ -635,26 +684,60 @@ public function publicIndexAbout() {
             $apply->save();
 
         }
-        return view('band-dashboard/bandsuccess');
-
+        return view('band-dashboard/bandsuccess');  
+        }
     }
 
     public function apply2(Request $request)
-    {
+    {   
         
         $services = $request->input('appliedBands');
+        if($services == ""){
+            $region = $request->input("region");
+            $genre = $request->input("genre");
+            $instrument = $request->input("instrument");
+            
+            
+            $musicians = DB::table('details')
+                -> join('users','users.detail_id','=','details.detail_id')
+                ->where('genre_id',$request->session()->get('temp_genre2'))
+                ->where('instrument_id',$request->session()->get('temp_instrument2'))
+                ->where('region_id',$request->session()->get('temp_region2'))
+                ->where('type_id',1)
+                ->where('details.status_id',6)
+    
+                ->get();
+                $sent_from = $request->session()->get('detail_id');
+           
+                foreach ($musicians as $node){
         
-       
-        for($i=0;$i<sizeof($services); $i++) {
-         
-            $apply = new Application;
-            $apply->sent_from =  $request->session()->get('detail_id');
-            $apply->sent_to = $services[$i];
-            $apply->application_status =  "Applied";
-            $apply->save();
+                    $sent_to = $node->detail_id;      
+                    $applications = Application::all()->where('sent_from', $sent_from)->where('sent_to', $sent_to);
+                    
+                    $count = $applications->count();
+                    if ($count > 0) {
+                        $musicians = $musicians->where('detail_id', '!=', $sent_to);
+                    }
+                }
+                $count = $musicians->count();
+                // return $request->session()->get('temp_region2');
+                return view('band-dashboard/bandmatchlist', compact('musicians','count'));
+          
+        }else{
+        
 
+            for($i=0;$i<sizeof($services); $i++) {
+             
+                $apply = new Application;
+                $apply->sent_from =  $request->session()->get('detail_id');
+                $apply->sent_to = $services[$i];
+                $apply->application_status =  "Applied";
+                $apply->save();
+    
+            }
+            
+            return view('musician-dashboard/successmusician');
         }
-        return view('musician-dashboard/successmusician');
         
     }
 
@@ -780,6 +863,14 @@ public function publicIndexAbout() {
     public function fileUpload(Request $request, $detail_id){
         
           $image = $request->file('image');
+          $this->validate($request, [
+            'image' => 'mimes:jpeg,png,bmp,tiff |max:4096',
+        ],
+            $messages = [
+                'required' => 'The :attribute field is required.',
+                'mimes' => 'Only jpeg, png, bmp,tiff are allowed.'
+            ]
+        );
             if($image == ""){
                 $input['imagename'] = Session::get('dp_url');
                 $dp_url = $input['imagename'];
@@ -791,10 +882,7 @@ public function publicIndexAbout() {
                 $destinationPath = public_path('/assets/musician_dp/');
                 $image->move($destinationPath, $input['imagename']);
             }
-    
-            
-        
-            // $dp_url = $input['imagename'];
+
             if($request->input("status") == null){
                 $status_id = $request->session()->get('status_id');
             }else{
