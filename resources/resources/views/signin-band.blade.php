@@ -12,8 +12,8 @@
   <div id="forum-padding"class="col-sm-6" style="text-align:center;padding:100px" >
     <h1 id="  "style="color: #2EA8D1">BAND SIGN IN</h1><br>
     @if(session()->has('message'))
-      <p style="color: red"> {{ session()->get('message') }} </p>
-    @endif
+          {{ session()->get('message') }}
+          @endif
     {{ Form::open(array('action' => 'UsersController@loginBand')) }}
     @csrf
       <div class="form-group">

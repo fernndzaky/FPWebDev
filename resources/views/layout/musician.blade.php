@@ -38,7 +38,7 @@
     }
     .btn-signup{
         background-color:#0883CC;
-        border-radius:10px;
+        border-radius:25px;
         
     }
     .btn-login{
@@ -72,6 +72,7 @@
       border: none;
       border-radius: 100px;
       padding: 25px 70px;
+
     }
     .parallax {
       /* The image used */
@@ -83,6 +84,30 @@
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
+
+      
+    }
+    @media only screen and (max-width: 600px){
+      #bassist-img{
+      display: none !important;
+    }
+    #img-card{
+      max-width: 310px !important;
+    }
+    #morethan-txt{
+      font-size: 35px !important;
+    }
+    #apps-txt{
+      font-size: 20px !important;
+    }
+    
+    .btn-signup{
+      padding: 2px 20px !important
+    }
+    .btn-done{
+      padding: 0px !important;
+      text-align: left !important;
+    }
     }
     </style>
   </head>
@@ -141,6 +166,10 @@
     <script src="js/wow.min.js"></script>
     <script>
       new WOW().init();
+      $('#btncheck').attr("disabled",true);
+      $('#appliedBands').click(function(){
+      $('#btncheck').attr("disabled",!$(this).is(":checked"));
+  })
     </script>
   </body>
 </html>

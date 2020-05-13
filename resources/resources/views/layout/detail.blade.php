@@ -90,33 +90,6 @@
       background-repeat: no-repeat;
       background-size: cover;
     }
-    @media only screen and (max-width: 600px) {
-    #naksotoy-img{
-    display: none !important
-    }
-    #morethan-txt{
-      font-size: 35px !important
-    }
-    #bassist-img{
-      display: none !important
-    }
-    #apps-txt{
-      font-size: 20px !important
-    }
-    #btn-padding{
-      padding:0px 0px 0px 70px
-    }
-    .btn-signup{
-      padding: 2px 20px !important
-    }
-    .btn-done{
-      padding: 0px !important;
-      text-align: left !important;
-    }
-    #img-card{
-      max-width: 310px !important;
-    }
-  }
     </style>
   </head>
   <body style="font-family: Quicksand">
@@ -137,15 +110,10 @@
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item active" style="padding-right:20px">
-                <a class="nav-link" href="{{ url('/appband') }}" style="font-family:quicksand;color: #61BDDC !important;font-weight:bold">Applications</a>
-              </li>
-              <li class="nav-item active"  style="padding-right:20px">
-                <a class="nav-link" href="{{ url('/band-dashboard') }}"style="font-family:quicksand;color: #61BDDC !important;font-weight:bold">My Profile</a>
-              </li>
+              
               
               <li class="nav-item active"  style="padding-right:20px;text-align:center">
-              <a class="nav-link btn-logout" style="color:white;font-family:quicksand;font-weight:bold"  href="{{ url('/logout') }}">Log Out</a>
+              <a class="nav-link btn-logout" style="color:white;font-family:quicksand;font-weight:bold"  href="{{ url('/') }}">Home</a>
               </li>
               
           </ul>
@@ -177,11 +145,6 @@
     <script src="js/wow.min.js"></script>
     <script>
       new WOW().init();
-      $('#btncheck').attr("disabled",true);
-    $('#appliedMusicians').click(function(){
-    $('#btncheck').attr("disabled",!$(this).is(":checked"));
-  })
     </script>
   </body>
 </html>
-

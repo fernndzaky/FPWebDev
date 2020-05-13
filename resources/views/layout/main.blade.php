@@ -40,7 +40,7 @@
       color: white;
       border: none;
       border-radius: 100px;
-      padding: 25px 70px;
+      padding: 25px 50px;
     }
     .btn-blue:hover{
       background-image: linear-gradient(-90deg, #2EA8D1, #2EA8D1);
@@ -64,8 +64,15 @@
     #signin-img{
       display: none !important
     }
+    #signin-padding{
+      padding-top: 50px !important
+    }
+    .img-home{
+      width: 100%; height: 600px; overflow: hidden
+    }
     #home-img{
-      height: 600px !important
+      height: 600px !important;
+      width: auto !important;
     }
     #top-title{
       font-size: 35px !important
@@ -99,6 +106,9 @@
     #meet-developers{
       font-size:40px !important
     }
+    .signin-mobile{
+      margin-top: 10px
+    }
   }
     </style>
   </head>
@@ -129,10 +139,10 @@
               <li class="nav-item active"  style="padding-right:20px">
                 <a class="nav-link" href="{{ url('/about') }}"style="font-family:quicksand;color: #61BDDC !important;font-weight:bold">About Us</a>
               </li>
-              <li class="nav-item active"  style="padding-right:20px;text-align:center">
+              <li class="nav-item active signin-mobile"  style="padding-right:20px;text-align:center">
               <a class="nav-link btn-signup" style="color:white;"  href="{{ url('/signup') }}">Sign Up</a>
               </li>
-              <li class="nav-item active"  style="padding-right:20px;text-align:center">
+              <li class="nav-item active signin-mobile"  style="padding-right:20px;text-align:center">
               <a class="nav-link btn-login" style="color:white;"  href="{{ url('/signin') }}">Sign In</a>
               </li>
           </ul>

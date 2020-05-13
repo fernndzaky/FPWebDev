@@ -1,9 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <link rel="icon" href="
-    {{ url('assets/icon.png') }}
-    ">
+    <link rel="icon" href="assets/icon.png">
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -12,8 +10,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand" />
-    <link rel="stylesheet" href="
-    {{ url('css/animate.css') }}">
+    <link rel="stylesheet" href="css/animate.css">
 
     <title>Minder</title>
       <!-- bottom content -->
@@ -41,7 +38,7 @@
     }
     .btn-signup{
         background-color:#0883CC;
-        border-radius:10px;
+        border-radius:25px;
         
     }
     .btn-login{
@@ -80,43 +77,34 @@
     .parallax {
       /* The image used */
       background-image: url("assets/band 3.png");
-
       /* Set a specific height */
       height: 350px;
-
       /* Create the parallax scrolling effect */
       background-attachment: fixed;
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
+
+      
     }
-    @media only screen and (max-width: 600px) {
-    #naksotoy-img{
-    display: none !important
-    }
-    #morethan-txt{
-      font-size: 35px !important
-    }
-    #bassist-img{
-      display: none !important
-    }
-    #apps-txt{
-      font-size: 20px !important
-    }
-    #btn-padding{
-      padding:0px 0px 0px 70px
-    }
-    .btn-signup{
-      padding: 2px 20px !important
-    }
-    .btn-done{
-      padding: 0px !important;
-      text-align: left !important;
+    @media only screen and (max-width: 600px){
+      #bassist-img{
+      display: none !important;
     }
     #img-card{
-      max-width: 310px !important;
+      max-width: 310px;
     }
-  }
+    #morethan-txt{
+      font-size: 35px !important;
+    }
+    #apps-txt{
+      font-size: 20px !important;
+    }
+    #btn-padding{
+      padding: 0px 0px 0px 70px ;
+      
+    }
+    }
     </style>
   </head>
   <body style="font-family: Quicksand">
@@ -125,7 +113,7 @@
     <nav class="navbar navbar-expand-lg navbar-light pt-3">
       <div class="container">
         
-          <img src="{{ url('assets/logo1.png') }}" alt="">
+      <img src="{{ url('assets/logo1.png') }}" alt="">
         
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -138,10 +126,10 @@
           <form class="form-inline my-2 my-lg-0">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active" style="padding-right:20px">
-                <a class="nav-link" href="{{ url('/appband') }}" style="font-family:quicksand;color: #61BDDC !important;font-weight:bold">Applications</a>
+                <a class="nav-link" href="{{ url('/appmusician') }}" style="font-family:quicksand;color: #61BDDC !important;font-weight:bold">Applications</a>
               </li>
               <li class="nav-item active"  style="padding-right:20px">
-                <a class="nav-link" href="{{ url('/band-dashboard') }}"style="font-family:quicksand;color: #61BDDC !important;font-weight:bold">My Profile</a>
+                <a class="nav-link" href="{{ url('/musician-dashboard') }}"style="font-family:quicksand;color: #61BDDC !important;font-weight:bold">My Profile</a>
               </li>
               
               <li class="nav-item active"  style="padding-right:20px;text-align:center">
@@ -158,10 +146,7 @@
 
     <div class="container pt-5 pb-5"style="text-align: center;">
       <div class="col-12" >
-        
-        <img src="
-        {{ url('assets/logo1.png') }}
-        " alt="">
+        <img src="assets/logo1.png" alt="">
       </div>
       <div class="col-12">
       <p style="color:#2EA8D1">A Website Development & Security Final Project By : Yohanes Haryo Nugroho and Fernandha Dzaky</p>
@@ -177,11 +162,6 @@
     <script src="js/wow.min.js"></script>
     <script>
       new WOW().init();
-      $('#btncheck').attr("disabled",true);
-    $('#appliedMusicians').click(function(){
-    $('#btncheck').attr("disabled",!$(this).is(":checked"));
-  })
     </script>
   </body>
 </html>
-

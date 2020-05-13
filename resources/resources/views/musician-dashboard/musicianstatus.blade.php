@@ -10,7 +10,7 @@
                 <!-- <p style="font-family: Quicksand;font-weight: bold;font-size: 40px;text-align: center;color: #3883C6">Currently you are :</p> -->
                 <div class="form-group" style="margin-top: 3%">
                     <label for="description" >CHANGE DISPLAY PICTURE</label>
-                    <input accept="image/*" id="upload" type="file" name="image" onchange="readURL(this);" class="form-control @error('image') is-invalid @enderror">                
+                    <input  id="upload" type="file" name="image" onchange="readURL(this);" class="form-control @error('image') is-invalid @enderror">                
                     @error('image')
                     <div class="invalid-feedback" style="text-align: left !important">
                         {{$message}}

@@ -6,7 +6,7 @@
         <div class="col-sm-6" style="">
             <h1 style="font-family: Quicksand;font-weight: bold;font-size: 40px;font-style: normal;">{{$count}} <span style="color:#61BDDC">MUSICIANS MATCHED</span> </h1>
         </div>
-        <div class="col-sm-6 btn-done" style="text-align:right;">
+        <div class="col-sm-6 " style="text-align:right;padding-right:60px">
         <?php
         if($count == 0){?>
             <a href="{{ url('/band-dashboard') }}">
@@ -18,7 +18,7 @@
    
             {{ Form::open(array('action' => 'UsersController@apply')) }}
             @csrf
-                <button class="btn-blue" id="btncheck" style="border-radius: 40px;" type="submit" name="submit">DONE</button>
+                <button class="btn-blue" style="border-radius: 40px;" type="submit" name="submit">DONE</button>
                 <br><br>
         
         <?php } ?>
@@ -42,15 +42,15 @@
                     <div>
                         <p class="card-text" style="font-family: Quicksand;font-weight: bold;font-size: 24px;color: #61BDDC;text-align:center">{{$musicians->name}}</p>
                     </div>
-                    <div  class="btn-signup mt-2" style="text-align: center">
+                    <div id="btn-padding" style="padding-left: 70px">
                         <a href="/musician/{{$musicians->detail_id}}" target="_blank"
-                             class="btn-signup" style="color:#F4FCFF;font-size: 20px;"> VIEW DETAIL </button>
+                             class="btn-signup" style="width:100%;color:#F4FCFF;font-size: 20px;font-weight: bold; font-family: Quicksand;text-align: center"> VIEW DETAIL </button>
                         </a>
                     
                     </div>
                     <div>
-                        <div class="form-check mt-2" style="text-align: center;padding-left: 0px !important">
-                        <input type="checkbox" id="appliedMusicians" name="appliedMusicians[]" value="{{$musicians->detail_id}}"> 
+                        <div class="form-check">
+                        <input type="checkbox" id="inlineCheckbox1" name="appliedMusicians[]" value="{{$musicians->detail_id}}"> 
                             
                             <!-- <input class="form-check-input" type="checkbox" name="appliedMusicians[]" value="{{$musicians->detail_id}}" id="appliedMusicians"> -->
                             <label class="form-check-label" for="defaultCheck1">

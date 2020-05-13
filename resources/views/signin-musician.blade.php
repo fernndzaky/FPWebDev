@@ -12,7 +12,7 @@
   <div id="forum-padding" class="col-sm-6" style="text-align:center;padding:100px" >
     <h1 style="color: #2EA8D1">MUSICIAN SIGN IN</h1><br>
     @if(session()->has('message'))
-          {{ session()->get('message') }}
+          <p style="color: red"> {{ session()->get('message') }} </p>
     @endif
 
     {{ Form::open(array('action' => 'UsersController@login')) }}

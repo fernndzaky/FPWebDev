@@ -106,16 +106,6 @@
     #btn-padding{
       padding:0px 0px 0px 70px
     }
-    .btn-signup{
-      padding: 2px 20px !important
-    }
-    .btn-done{
-      padding: 0px !important;
-      text-align: left !important;
-    }
-    #img-card{
-      max-width: 310px !important;
-    }
   }
     </style>
   </head>
@@ -177,10 +167,6 @@
     <script src="js/wow.min.js"></script>
     <script>
       new WOW().init();
-      $('#btncheck').attr("disabled",true);
-    $('#appliedMusicians').click(function(){
-    $('#btncheck').attr("disabled",!$(this).is(":checked"));
-  })
     </script>
   </body>
 </html>

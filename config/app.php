@@ -189,7 +189,7 @@ return [
     */
 
     'aliases' => [
-        'Input' => Illuminate\Support\Facades\Input::class,
+        'Input' => Illuminate\Suppfort\Facades\Input::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,

@@ -458,17 +458,17 @@ public function publicIndexAbout() {
         $genre = $request->input("genre");
         $instrument = $request->input("instrument");
         
-        Session::put('temp_region2',$region);
-        Session::put('temp_genre2',$genre);
-        Session::put('temp_instrument2',$instrument);
+        // Session::put('temp_region2',$region);
+        // Session::put('temp_genre2',$genre);
+        // Session::put('temp_instrument2',$instrument);
       
         
         
         $musicians = DB::table('details')
             -> join('users','users.detail_id','=','details.detail_id')
-            ->where('genre_id',$request->session()->get('temp_genre2'))
-            ->where('instrument_id',$request->session()->get('temp_instrument2'))
-            ->where('region_id',$request->session()->get('temp_region2'))
+            ->where('genre_id',$genre)
+            ->where('instrument_id',$instrument)
+            ->where('region_id',$region)
             ->where('type_id',1)
             ->where('details.status_id',6)
 
@@ -492,20 +492,18 @@ public function publicIndexAbout() {
     }
 
     public function findBand2(Request $request){
-        $request->session()->put('temp_region',$request->input("region"));
-        $request->session()->put('temp_genres',$request->input("genre"));
-        $request->session()->put('temp_status_id',$request->session()->get('instrument_id'));
-        // $region = $request->input("region");
-        // $genre = $request->input("genre");
-        // $status_id = $request->session()->get('instrument_id');
+    
+        $region = $request->input("region");
+        $genre = $request->input("genre");
+        $status_id = $request->session()->get('instrument_id');
         
         $bands = DB::table('details')
             -> join('users','users.detail_id','=','details.detail_id')
             // -> join('applications','applications.sent_from','=',$request->session()->get('detail_id'))
-            ->where('genre_id',$request->session()->get('temp_genres'))
-            ->where('region_id',$request->session()->get('temp_region'))
+            ->where('genre_id',$genre)
+            ->where('region_id',$region)
             ->where('users.type_id',2)
-            ->where('details.status_id',$request->session()->get('temp_status_id'))
+            ->where('details.status_id',$status_id)
             ->get();
         $sent_from = $request->session()->get('detail_id');
         // echo $bands,"<br>";
@@ -523,7 +521,8 @@ public function publicIndexAbout() {
             }
         }
         $count = $bands->count();
-        // return dump ($bands);
+        
+    
         return view('musician-dashboard/musicianmatchlist', compact('bands','count'));
     }
     
@@ -638,43 +637,7 @@ public function publicIndexAbout() {
     {
 
         $services = $request->input('appliedMusicians');
-        if($services == ""){
-
-            $region = $request->session()->get('temp_region2');
-            $genre =$request->session()->get('temp_genre2');
-            $instrument = $request->session()->get('temp_instrument2');
-
         
-        
-        $musicians = DB::table('details')
-            -> join('users','users.detail_id','=','details.detail_id')
-            ->where('genre_id',$genre)
-            ->where('instrument_id',$instrument)
-            ->where('region_id',$region)
-            ->where('type_id',1)
-            ->where('details.status_id',6)
-
-            ->get();
-            $sent_from = $request->session()->get('detail_id');
-       
-            foreach ($musicians as $node){
-    
-                $sent_to = $node->detail_id;      
-                $applications = Application::all()->where('sent_from', $sent_from)->where('sent_to', $sent_to);
-                
-                $count = $applications->count();
-                if ($count > 0) {
-                    $musicians = $musicians->where('detail_id', '!=', $sent_to);
-                }
-            }
-            $count = $musicians->count();
-            return view('band-dashboard/bandmatchlist', compact('musicians','count'));
-
-
-
-
-
-        }else{
         for($i=0;$i<sizeof($services); $i++) {
          
             $apply = new Application;
@@ -685,60 +648,20 @@ public function publicIndexAbout() {
 
         }
         return view('band-dashboard/bandsuccess');  
-        }
+        
     }
 
     public function apply2(Request $request)
-    {   
-        
+    {    
         $services = $request->input('appliedBands');
-        if($services == ""){
-            $region = $request->input("region");
-            $genre = $request->input("genre");
-            $instrument = $request->input("instrument");
-            
-            
-            $musicians = DB::table('details')
-                -> join('users','users.detail_id','=','details.detail_id')
-                ->where('genre_id',$request->session()->get('temp_genre2'))
-                ->where('instrument_id',$request->session()->get('temp_instrument2'))
-                ->where('region_id',$request->session()->get('temp_region2'))
-                ->where('type_id',1)
-                ->where('details.status_id',6)
-    
-                ->get();
-                $sent_from = $request->session()->get('detail_id');
-           
-                foreach ($musicians as $node){
-        
-                    $sent_to = $node->detail_id;      
-                    $applications = Application::all()->where('sent_from', $sent_from)->where('sent_to', $sent_to);
-                    
-                    $count = $applications->count();
-                    if ($count > 0) {
-                        $musicians = $musicians->where('detail_id', '!=', $sent_to);
-                    }
-                }
-                $count = $musicians->count();
-                // return $request->session()->get('temp_region2');
-                return view('band-dashboard/bandmatchlist', compact('musicians','count'));
-          
-        }else{
-        
-
             for($i=0;$i<sizeof($services); $i++) {
-             
                 $apply = new Application;
                 $apply->sent_from =  $request->session()->get('detail_id');
                 $apply->sent_to = $services[$i];
                 $apply->application_status =  "Applied";
                 $apply->save();
-    
             }
-            
             return view('musician-dashboard/successmusician');
-        }
-        
     }
 
     public function showApplications(Request $request){

@@ -6,9 +6,7 @@
 @section('container')
   <!-- top content --> 
     <div class="box">
-    <div class="img-home" style="">
       <img id="home-img"  style="width: 100%;height:700px" src="assets/band 2.jpg" alt="">
-    </div>
       <div class="text wow fadeInLeft">
         <h1 id="top-title" style="color: white;font-size: 70px">YOUR TOP SOLUTION FOR FINDING BAND MEMBER</h1>
         <a href="{{ url('/signin-band') }}">
@@ -24,7 +22,7 @@
   <!-- center 1 content -->
     <div class="row p-0 m-0">
       <div class="col-sm-6 wow fadeInLeft" > 
-        <img class="img-fluid" id="naksotoy-img" src="assets/naksotoy1.png"  style="padding-top:40px;padding-bottom:40px"alt="">
+        <img id="naksotoy-img" src="assets/naksotoy1.png"  style="padding-top:40px;padding-bottom:40px"alt="">
       </div>
       <div id="findmus-txt"class="col-sm-6" style="text-align:center;padding-top:150px" >
         <h1 style="padding-bottom:20px;color:#2EA8D1;font-family:quicksand"> ARE YOU LOOKING FOR A BAND MEMBER ? MAYBE DRUMMER ? </h1>
@@ -49,7 +47,7 @@
       <button class="btn-blue" style="margin-top:5%">FIND BAND</button>
     </div>
     <div class="col-sm-6 wow fadeInRight" style="text-align:center" >
-      <img class="img-fluid" id="bassist-img" src="assets/bassist 1.png" alt="">
+      <img id="bassist-img" src="assets/bassist 1.png" alt="">
     </div>
   </div>
   <!-- end content 2 -->

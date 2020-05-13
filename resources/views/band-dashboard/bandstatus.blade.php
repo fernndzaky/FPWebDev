@@ -10,7 +10,7 @@
                 <!-- <p style="font-family: Quicksand;font-weight: bold;font-size: 40px;text-align: center;color: #3883C6">Currently you are :</p> -->
                 <div class="form-group" style="margin-top: 3%">
                     <label for="description" >CHANGE DISPLAY PICTURE</label>
-                    <input  id="upload" type="file" name="image" onchange="readURL(this);" class="form-control">                
+                    <input accept="image/*"  id="upload" type="file" name="image" onchange="readURL(this);" class="form-control">                
                 </div>
                 <div class="form-group" style="margin-top: 3%">
                     <label for="description">CHANGE STATUS</label>
