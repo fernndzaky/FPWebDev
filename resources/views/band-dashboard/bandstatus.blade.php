@@ -36,7 +36,7 @@
             </form>
             </div>
             <div class="col-sm-6 wow fadeInRight" style="text-align:center" >
-                <img src="assets/band_dp/{{ Session::get('dp_url') }}" alt="" class="img-fluid" style="max-height:500px">
+                <img id="dp" src="assets/band_dp/{{ Session::get('dp_url') }}" alt="" class="img-fluid" style="max-height:500px">
             </div>
     </div>
 </div>

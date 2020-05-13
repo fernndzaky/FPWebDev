@@ -7,7 +7,7 @@
     @foreach($data as $data)
     <div class="row m-0" style="padding-top:30px">
     <div class="col-sm-4 pl-0 wow fadeInLeft" style="text-align: center">
-        <img src="{{ url('assets/band_dp/'.$data->dp_url.'') }}" style="max-width:350px;max-height:338px;width:auto"alt="">
+        <img id="dp" src="{{ url('assets/band_dp/'.$data->dp_url.'') }}" style="max-width:350px;max-height:338px;width:auto"alt="">
         </div>
         <div class="col-sm-8 pl-4">
             
