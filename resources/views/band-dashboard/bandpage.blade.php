@@ -30,10 +30,11 @@
                         </p>    
                     </div>
                     <div class="col-sm-6">
-                    {{ Form::open(array('action' => 'UsersController@edit2')) }}
-                    @csrf
+                    <a href="bandstatus">
                         <button class="btn-blue" style="border-radius:50px;font-family: Quicksand"> CHANGE STATUS </button><br><br>
-                    </form>
+
+                    </a>
+                    
                     </div>
                 </div>
         </div>

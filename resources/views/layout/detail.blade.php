@@ -1,9 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <link rel="icon" href="
-    {{ url('assets/icon.png') }}
-    ">
+    <link rel="icon" href="{{ url('assets/icon.png') }}">
 
     <!-- Required meta tags -->
     <meta charset="utf-8">

@@ -18,9 +18,8 @@
         else{ ?>
         {{ Form::open(array('action' => 'UsersController@apply2')) }}
         @csrf
-                <button class="btn-blue" id="btncheck" style="border-radius: 40px;" type="submit" name="submit">DONE</button>
+        <button class="btn-blue" id="btncheck" style="border-radius: 40px;" type="submit" name="submit" disabled>DONE</button>
         
-       
         <?php } ?>
         </div>
     </div>
@@ -31,22 +30,21 @@
     <div class="col-sm-4" style="margin-top:15px">
             <div class="card wow pulse" style="">
                 <div style="text-align: center">
-                    <img id="img-card" src="assets/band_dp/{{$bands->dp_url}}" style="height:338px;width:auto;max-width:339px;"alt="">
+                    <img id="img-card" src="assets/band_dp/{{$bands['dp_url']}}" style="height:338px;width:auto;max-width:339px;"alt="">
 
                 </div>
                 <div class="card-body">
                     <div>
-                        <p class="card-text" style="font-family: Quicksand;font-weight: bold;font-size: 24px;color: #61BDDC;text-align:center">{{$bands->name}}</p>
+                        <p class="card-text" style="font-family: Quicksand;font-weight: bold;font-size: 24px;color: #61BDDC;text-align:center">{{$bands['name']}}</p>
                     </div>
                     <div  class="btn-signup mt-2" style="text-align: center">
-                        <a href="/band/{{$bands->detail_id}}" target="_blank"
+                        <a href="/band/{{$bands['detail_id']}}" target="_blank"
                             style="color:#F4FCFF;font-size: 20px;"> VIEW DETAIL </button>
                         </a>
                     </div>
                     <div>
                         <div class="form-check mt-2" style="text-align: center;padding-left: 0px !important">
-                        <input type="checkbox" id="appliedBands" name="appliedBands[]" value="{{$bands->detail_id}}"> 
-                            
+                        <input onclick="terms_changed(this)" type="checkbox" id="appliedBands" name="appliedBands[]" value="{{$bands['detail_id']}}"> 
                             <label class="form-check-label" for="defaultCheck1">
                                 APPLY TO THIS MUSICIAN
                             </label>

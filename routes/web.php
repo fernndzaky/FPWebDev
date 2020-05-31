@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 // home page routing
 Route::get('/', ['uses' => 'HomeController@publicIndex']);
-
+// Route::get('/', function () {
+//     return view('home');
+// });
 Route::get('/about', ['uses' => 'UsersController@publicIndexAbout']);
 
 
@@ -81,9 +83,9 @@ Route::post('/signin-band', ['uses' => 'UsersController@store4']);
 // END OF SIGN UP BAND ROUTES
 
 // MUSICIAN ROUTING
-Route::get('/musicianstatus', function () {
-    return view('musician-dashboard/musicianstatus');
-});
+// Route::get('/musicianstatus', function () {
+//     return view('musician-dashboard/musicianstatus');
+// });
 
 Route::post('/musicianfindband', ['uses' => 'UsersController@findBand1']);
 Route::post('/musicianmatchlist', ['uses' => 'UsersController@findBand2']);
@@ -98,11 +100,11 @@ Route::get('/successmusician', ['uses' => 'UsersController@findbandIndex3']);
 
 
 
-Route::post('/musicianstatus', ['uses' => 'UsersController@edit1']);
+// Route::post('/musicianstatus', ['uses' => 'UsersController@edit1']);
 
 
 
-Route::post('/musician/{detail_id}', [
+Route::patch('/musician/{detail_id}', [
 
     'uses' => 'UsersController@fileUpload']);
 
@@ -121,10 +123,10 @@ Route::patch('/update-contacted/{detail}', 'UsersController@updateAppStatus2');
 // Route::get('/bandstatus', function () {
 //     return view('band-dashboard/bandstatus');
 // });
-Route::post('/band/{detail_id}', [
+Route::patch('/band/{detail_id}', [
 
     'uses' => 'UsersController@fileUpload2']);
-Route::post('/bandstatus', ['uses' => 'UsersController@edit2']);
+// Route::post('/bandstatus', ['uses' => 'UsersController@edit2']);
 
 Route::get('/appband', ['uses' => 'UsersController@showApplications']);
 
@@ -137,3 +139,16 @@ Route::get('/bandsuccess', ['uses' => 'UsersController@findbandIndex6']);
 Route::post('/bandsuccess', ['uses' => 'UsersController@apply']);
 
 // END OF BAND ROUTING
+
+// AMDIN ROUTING
+Route::get('/admin', function () {
+    return view('admin/adminlogin');
+});
+Route::post('/admin-musicians', ['uses' => 'AdminController@login']);
+Route::get('/admin-musicians', ['uses' => 'AdminController@loadMusicians']);
+// Route::post('/admin-bands', ['uses' => 'AdminController@loadBands']);
+Route::get('/admin-bands', ['uses' => 'AdminController@loadBands']);
+Route::delete('delete/{id}', ['uses' => 'AdminController@delete']);
+Route::get('delete/{id}', ['uses' => 'AdminController@deleteIndex']);
+
+// END OF ADMIN ROUTING

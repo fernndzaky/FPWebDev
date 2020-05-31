@@ -14,9 +14,11 @@
                 <select required class="form-control" id="genre" name="genre">
                 <label for="genre">CHOOSE BAND GENRE</label>
                     <option value="" disabled selected>SELECT DESIRED GENRE</option>
-
+                   
+                   
+                   
                     @foreach($genres as $genres)
-                        <option value="{{$genres->genre_id}}">{{$genres->genre_name}}</option>
+                        <option value="{{$genres['genre_id']}}">{{$genres['genre_name']}}</option>
                     @endforeach
                 </select>
             </div>
@@ -26,7 +28,7 @@
                     <option value="" disabled selected>SELECT DESIRED REGION</option>
 
                     @foreach($regions as $regions)
-                        <option value="{{$regions->region_id}}">{{$regions->region_name}}</option>
+                        <option value="{{$regions['region_id']}}">{{$regions["region_name"]}}</option>
                     @endforeach
                     </select>
                 </div>

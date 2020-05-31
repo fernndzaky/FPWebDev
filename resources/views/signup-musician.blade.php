@@ -16,7 +16,7 @@
     <!-- <form method="post" action="{{ url('/signup-musician-2') }}"> -->
       @csrf
       <div class="form-group">
-        <input style="color: #61BDDC" name="username" type="username" class="form-control @error('username') is-invalid @enderror" id="username" placeholder="INSERT USERNAME">
+        <input required style="color: #61BDDC" name="username" type="username" class="form-control @error('username') is-invalid @enderror" id="username" placeholder="INSERT USERNAME">
         @error('username')
           <div class="invalid-feedback" style="text-align: left !important">
             {{$message}}
@@ -24,7 +24,7 @@
         @enderror
       </div>
       <div class="form-group">
-        <input style="color: #61BDDC" name="password" type="password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="INSERT PASSWORD">
+        <input required style="color: #61BDDC" name="password" type="password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="INSERT PASSWORD">
         @error('password')
           <div class="invalid-feedback" style="text-align: left !important">
             {{$message}}
@@ -32,7 +32,7 @@
         @enderror
       </div>
       <div class="form-group">
-        <input style="color: #61BDDC" name="phone" type="number" class="form-control @error('phone') is-invalid @enderror" id="phone" placeholder="INSERT PHONE NUMBER">
+        <input required style="color: #61BDDC" name="phone" type="number" class="form-control @error('phone') is-invalid @enderror" id="phone" placeholder="INSERT PHONE NUMBER">
         @error('phone')
           <div class="invalid-feedback" style="text-align: left !important">
             {{$message}}

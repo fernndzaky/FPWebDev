@@ -6,6 +6,8 @@
         <div class="col-sm-6" >
             <h1 style="color:#2EA8D1;font-family:quicksand;font-weight:bold;padding:0px 50px 0px 50px;text-align:center"> MY PROFILE </h1>
             <form method="post" id="formImgInp" action="band/{{ Session::get('detail_id') }}" enctype="multipart/form-data">
+                @method('patch')
+                @csrf
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <!-- <p style="font-family: Quicksand;font-weight: bold;font-size: 40px;text-align: center;color: #3883C6">Currently you are :</p> -->
                 <div class="form-group" style="margin-top: 3%">
@@ -31,7 +33,7 @@
                         <textarea class="form-control" name="description" id="description" rows="3">{{ Session::get('description') }}</textarea>
                     </div>
                     <!-- <a href="{{ url('/band-dashboard') }}"></a> -->
-                    <button type="submit" class="btn-blue" >UPDATE PROFILE</button>
+                    <button class="btn-blue" >UPDATE PROFILE</button>
                 </div>
             </form>
             </div>

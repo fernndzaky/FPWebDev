@@ -25,7 +25,7 @@
         <label for="genre">CHOOSE YOUR GENRE</label>
         <select class="form-control" id="genre" name="genre">
           @foreach($genres as $genres)
-          <option value="{{$genres->genre_id}}">{{$genres->genre_name}}</option>
+          <option value="{{$genres['genre_id']}}">{{$genres['genre_name']}}</option>
           @endforeach
         </select>
       </div>
@@ -35,7 +35,7 @@
         <select class="form-control" id="region" name="region">
           @foreach($region as $region)
 
-          <option value="{{$region->region_id}}">{{$region->region_name}}</option>
+          <option value="{{$region['region_id']}}">{{$region['region_name']}}</option>
           @endforeach
         </select>
       </div>
@@ -44,7 +44,7 @@
         <label for="instrument">CHOOSE YOUR INSTRUMENT</label>
         <select class="form-control" id="instrument" name="instrument">
           @foreach($instrument as $instrument)
-          <option value="{{$instrument->instrument_id}}">{{$instrument->instrument_name}}</option>
+          <option value="{{$instrument['instrument_id']}}">{{$instrument['instrument_name']}}</option>
           @endforeach
         </select>
       </div>

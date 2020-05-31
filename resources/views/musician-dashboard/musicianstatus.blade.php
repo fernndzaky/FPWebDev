@@ -6,6 +6,8 @@
         <div class="col-sm-6" >
             <h1 style="color:#2EA8D1;font-family:quicksand;font-weight:bold;padding:0px 50px 0px 50px;text-align:center"> MY PROFILE </h1>
             <form method="post" id="formImgInp" action="musician/{{ Session::get('detail_id') }}" enctype="multipart/form-data">
+                @method('patch')
+                @csrf
                 <input  type="hidden" name="_token" value="{{csrf_token()}}">
                 <!-- <p style="font-family: Quicksand;font-weight: bold;font-size: 40px;text-align: center;color: #3883C6">Currently you are :</p> -->
                 <div class="form-group" style="margin-top: 3%">
@@ -21,9 +23,7 @@
                     <label for="description">CHANGE STATUS</label>
                     <select  class="form-control" id="status" name="status">
                         <option value="0" disabled selected>Your Status : {{ Session::get('status') }}</option>
-                        <!-- @foreach($status as $status)
-                            <option value="{{$status->status_id}}">{{$status->status_name}}</option>
-                        @endforeach -->
+                        
                         <option value="6">Currently looking for a band</option>
                         <option value="8">Currently not looking for any band</option>
                     </select>
@@ -32,7 +32,7 @@
                         <textarea class="form-control" name="description" id="description" rows="3">{{ Session::get('description') }}</textarea>
                     </div>
                     <!-- <a href="{{ url('/musician-dashboard') }}"></a> -->
-                    <button type="submit" class="btn-blue" >UPDATE PROFILE</button>
+                    <button class="btn-blue" >UPDATE PROFILE</button>
                 </div>
             </form>
             </div>

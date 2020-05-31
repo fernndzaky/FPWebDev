@@ -21,7 +21,7 @@ class HomeController extends Controller
 
     public function publicIndex()
 	{
-        if (Session::get('username') == "") return view('welcome');
+        if (Session::get('username') == "") return view('home');
 		$users = User::all();
         return view('musician-dashboard/musicianpage', ['username' => $users]);
     }
