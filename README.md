@@ -13,7 +13,7 @@ About MINDER<br/><br/>
 Minder is a web application for musicians to find other musicians to fulfill their musical desire and to achieve their goal or even create a band with other outstanding musicians. <br/><br/>
 MINDER Background & Problem<br/>
 Our friend is a great guitarist with outstanding skill, but he often hard to find a fit for a band since his former band disbanded. As Computer Science students, we want to help him overcome that kind of problem.<br/><br/>
-Documentation on how to deploy in Google Cloud Platform (GCP)<br/>
+Documentation on how to deploy in Google Cloud Platform (GCP)<br/><br/>
 1.Create a Google Cloud Platform virtual machine.<br/>
 2.Set up VM and take the ip from google cloud platform and add record of dns to cloudflare. <br/>
 3.Open ssh server from GCP. <br/>
