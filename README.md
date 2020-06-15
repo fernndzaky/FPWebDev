@@ -1,11 +1,14 @@
+<h4 align="center">
+WADS Final Project
+</h4>
+<p align="center">
+Semester 4 Final Project Web Development and Security
+</p>
+
+
 <p align="center"><img src="public/assets/logo1.png" width="400"></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+
 
 ## About Laravel
 
