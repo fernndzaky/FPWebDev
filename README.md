@@ -1,6 +1,6 @@
-<h4 align="center">
+<h1 align="center">
 WADS Final Project
-</h4>
+</h1>
 <p align="center">
 Semester 4 Final Project Web Development and Security
 </p>
