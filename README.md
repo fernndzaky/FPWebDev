@@ -27,29 +27,28 @@ Documentation on how to deploy in Google Cloud Platform (GCP)<br/>
 11.Create a proxy pass to open the port for the frontend and the backends with sudo nano /etc/nginx/sites-available/default.<br/>
 12.Change the name server between the web host with the cloudflare name server.<br/>
 13.To deploy the web app in the server, use sudo  apt install screen, then call screen, and serve the background along with the port that are stated in the proxy pass, e.g. “php artisan serve --port=8000”. Apply this step to all the laravel folders needed.<br/>
-16.Then the website is ready to go.<br/><br/>
+14.Then the website is ready to go.<br/><br/>
 
 Documentation on how to deploy in Localhost<br/><br/>
-Clone all the github needed to your computer.<br/>
-Use “composer install” to install all dependencies.<br/>
-Rename .env.example to .env<br/>
-Rename the database name inside the .env file<br/>
-Use “php artisan key:generate” to generate key for the .env<br/>
-Create databases with the same name as the one that written in the .env<br/>
-Use php artisan migrate in the back end laravel to import all the tables to the localhost sql<br/>
-Use “php artisan serve” to run laravel projects on the local apache server, but keep in mind to run all the laravel projects on different ports, e.g. 8000, or 8001, and or 8002.<br/>
-open the 127.0.0.1:[ port ] in the browser and you are good to go. <br/><br/>
+1.Clone all the github needed to your computer.<br/>
+2.Use “composer install” to install all dependencies.<br/>
+3.Rename .env.example to .env<br/>
+4.Rename the database name inside the .env file<br/>
+5.Use “php artisan key:generate” to generate key for the .env<br/>
+6.Create databases with the same name as the one that written in the .env<br/>
+7.Use php artisan migrate in the back end laravel to import all the tables to the localhost sql<br/>
+8.Use “php artisan serve” to run laravel projects on the local apache server, but keep in mind to run all the laravel projects on 9.different ports, e.g. 8000, or 8001, and or 8002.<br/>
+10.open the 127.0.0.1:[ port ] in the browser and you are good to go. <br/><br/>
 
 Documentation on how to use MINDER<br/><br/><br/>
-Open the website.<br/>
-At the homepage you can log in, if you do not have any account yet, you can create one.<br/>
-Click at the sign up button.<br/>
-You can choose as a band or musician.<br/>
-Set up your personal page.<br/>
-Find your interest in instrument,genre, and region.<br/>
-Once your account has been setted up.<br/>
-You can see the ‘Find Musician/Band’ button to find your interest.<br/>
-Then you will be redirected to the list where you can find your best interest.<br/>
-You can contact them if you are interested.<br/>
-Then wait for them to accept your interest.<br/>
-
+1.Open the website.<br/>
+2.At the homepage you can log in, if you do not have any account yet, you can create one.<br/>
+3.Click at the sign up button.<br/>
+4.You can choose as a band or musician.<br/>
+5.Set up your personal page.<br/>
+6.Find your interest in instrument,genre, and region.<br/>
+7.Once your account has been setted up.<br/>
+8.You can see the ‘Find Musician/Band’ button to find your interest.<br/>
+9.Then you will be redirected to the list where you can find your best interest.<br/>
+10.You can contact them if you are interested.<br/>
+11.Then wait for them to accept your interest.<br/>
