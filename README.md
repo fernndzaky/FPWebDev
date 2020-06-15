@@ -10,7 +10,7 @@ Semester 4 Final Project Web Development and Security
 </p>
 
 About MINDER
-Minder is a web application for musicians to find other musicians to fulfill their musical desire and to achieve their goal or even create a band with other outstanding musicians.
+Minder is a web application for musicians to find other musicians to fulfill their musical desire and to achieve their goal or even create a band with other outstanding musicians. <br/>
 MINDER Background & Problem
 Our friend is a great guitarist with outstanding skill, but he often hard to find a fit for a band since his former band disbanded. As Computer Science students, we want to help him overcome that kind of problem.
 Documentation on how to deploy in Google Cloud Platform (GCP)
