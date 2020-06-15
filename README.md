@@ -1,82 +1,55 @@
 <h1 align="center">
 WADS Final Project
 </h1>
-<p align="center">
-Semester 4 Final Project Web Development and Security
-</p>
 
 
 <p align="center"><img src="public/assets/logo1.png" width="400"></p>
 
+<p align="center">
+Semester 4 Final Project Web Development and Security
+</p>
 
+About MINDER
+Minder is a web application for musicians to find other musicians to fulfill their musical desire and to achieve their goal or even create a band with other outstanding musicians.
+MINDER Background & Problem
+Our friend is a great guitarist with outstanding skill, but he often hard to find a fit for a band since his former band disbanded. As Computer Science students, we want to help him overcome that kind of problem.
+Documentation on how to deploy in Google Cloud Platform (GCP)
+Create a Google Cloud Platform virtual machine.
+Set up VM and take the ip from google cloud platform and add record of dns to cloudflare. 
+Open ssh server from GCP. 
+Clone all repositories needed from github to the server. 
+In the server, download all the extensions needed such as server, install the latest php, composer and etc.
+Open the laravel folder, composer install, rename .env.example to .env, run php artisan key:generate to generate key for the env. Apply this step to all the laravel folders.
+Create a Google Cloud SQL Instance, insert two databases namely “minder” and “minder2”.
+Migrate databases using php artisan migrate to all the databases in the Google Cloud SQL.
+Change the db name and db host in .env make a connection between the database in gcp 
+Add new SSL protection by using GCP IP in cloudflare.
+Create a proxy pass to open the port for the frontend and the backends with sudo nano /etc/nginx/sites-available/default.
+Change the name server between the web host with the cloudflare name server.
+To deploy the web app in the server, use sudo  apt install screen, then call screen, and serve the background along with the port that are stated in the proxy pass, e.g. “php artisan serve --port=8000”. Apply this step to all the laravel folders needed.
+Then the website is ready to go.
 
-## About Laravel
+Documentation on how to deploy in Localhost
+Clone all the github needed to your computer.
+Use “composer install” to install all dependencies.
+Rename .env.example to .env
+Rename the database name inside the .env file
+Use “php artisan key:generate” to generate key for the .env
+Create databases with the same name as the one that written in the .env
+Use php artisan migrate in the back end laravel to import all the tables to the localhost sql
+Use “php artisan serve” to run laravel projects on the local apache server, but keep in mind to run all the laravel projects on different ports, e.g. 8000, or 8001, and or 8002.
+open the 127.0.0.1:[ port ] in the browser and you are good to go. 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Documentation on how to use MINDER
+Open the website.
+At the homepage you can log in, if you do not have any account yet, you can create one.
+Click at the sign up button.
+You can choose as a band or musician.
+Set up your personal page.
+Find your interest in instrument,genre, and region.
+Once your account has been setted up.
+You can see the ‘Find Musician/Band’ button to find your interest.
+Then you will be redirected to the list where you can find your best interest.
+You can contact them if you are interested.
+Then wait for them to accept your interest.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-- [云软科技](http://www.yunruan.ltd/)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
